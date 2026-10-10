@@ -1,0 +1,6 @@
+{
+  "name": "Remtoo - English Curriculum Landing Page",
+  "description": "A complete A1-C1 English curriculum ready to teach for teachers and schools.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
