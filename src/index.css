@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer base {
   :root {
     --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -22,15 +24,15 @@
 .bg-grid-blueprint {
   background-size: 36px 36px;
   background-image: 
-    linear-gradient(to right, rgba(37, 99, 235, 0.045) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(37, 99, 235, 0.045) 1px, transparent 1px);
+    linear-gradient(to right, rgba(37, 99, 235, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(37, 99, 235, 0.08) 1px, transparent 1px);
 }
 
 .bg-grid-dense {
   background-size: 20px 20px;
   background-image: 
-    linear-gradient(to right, rgba(99, 102, 241, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(99, 102, 241, 0.035) 1px, transparent 1px);
+    linear-gradient(to right, rgba(99, 102, 241, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(99, 102, 241, 0.07) 1px, transparent 1px);
 }
 
 .bg-dot-matrix {
@@ -105,4 +107,853 @@
   color: #7c3aed;
   border-color: #ddd6fe;
 }
+
+/* ========================================================================= */
+/* DARK MODE SYSTEM                                                          */
+/* ========================================================================= */
+html.dark {
+  color-scheme: dark;
+  background-color: #0b0f19;
+  color: #f1f5f9;
+}
+
+html.dark body {
+  background-color: #0b0f19 !important;
+  color: #f1f5f9 !important;
+}
+
+html.dark main {
+  background-color: #0b0f19 !important;
+}
+
+/* All Sections & Backgrounds in Dark Mode */
+html.dark section {
+  background-color: #0b0f19 !important;
+  background-image: linear-gradient(to bottom, #0b0f19 0%, #0e1628 50%, #0b0f19 100%) !important;
+}
+
+html.dark .to-white,
+html.dark [class*="to-white"] {
+  --tw-gradient-to: #0b0f19 !important;
+}
+
+html.dark .via-white,
+html.dark [class*="via-white"] {
+  --tw-gradient-via: #0e1628 !important;
+}
+
+html.dark .from-white,
+html.dark [class*="from-white"] {
+  --tw-gradient-from: #0b0f19 !important;
+}
+
+html.dark [class*="via-[#f8fbfe]"] {
+  --tw-gradient-via: #0d1424 !important;
+}
+
+html.dark [class*="via-[#f5f9fe]"] {
+  --tw-gradient-via: #0e1628 !important;
+}
+
+html.dark [class*="from-[#eaf2fd]"] {
+  --tw-gradient-from: #0b0f19 !important;
+}
+
+html.dark [class*="from-[#f8fbfe]"] {
+  --tw-gradient-from: #0b0f19 !important;
+}
+
+html.dark [class*="from-[#eef6ff]"] {
+  --tw-gradient-from: #0b0f19 !important;
+}
+
+/* CTA Section & Wave Dividers */
+html.dark .cta-section {
+  background-color: #0b0f19 !important;
+  background-image: linear-gradient(180deg, #0b0f19 0%, #0e172a 45%, #060913 100%) !important;
+}
+
+/* Top Wave Divider into CTA */
+html.dark .cta-section .cta-top-wave-1,
+html.dark .cta-wave-top path:first-child,
+html.dark .cta-section svg path[fill="#bfdbfe"]:not(.cta-bot-wave-2) {
+  fill: #152238 !important;
+  fill-opacity: 0.55 !important;
+}
+
+html.dark .cta-section .cta-top-wave-2,
+html.dark .cta-wave-top path:last-child,
+html.dark .cta-section svg path[fill="#ffffff"] {
+  fill: #0b0f19 !important;
+  fill-opacity: 1 !important;
+}
+
+/* Bottom Wave Divider into Footer */
+html.dark .cta-section .cta-bot-wave-1,
+html.dark .cta-wave-bottom path:nth-child(1),
+html.dark .cta-section svg path[fill="#dbeafe"] {
+  fill: #101a2d !important;
+  fill-opacity: 0.65 !important;
+}
+
+html.dark .cta-section .cta-bot-wave-2,
+html.dark .cta-wave-bottom path:nth-child(2) {
+  fill: #182744 !important;
+  fill-opacity: 0.85 !important;
+}
+
+html.dark .cta-section .cta-bot-wave-3,
+html.dark .cta-wave-bottom path:nth-child(3),
+html.dark .cta-section svg path[fill="#0b1329"] {
+  fill: #060913 !important;
+  fill-opacity: 1 !important;
+}
+
+html.dark .cta-section h2 {
+  color: #f8fafc !important;
+}
+
+html.dark .cta-section p {
+  color: #94a3b8 !important;
+}
+
+/* Header & Mobile Menu */
+html.dark header {
+  background-color: rgba(11, 15, 25, 0.94) !important;
+  border-bottom-color: #1e293b !important;
+}
+
+html.dark header .nav-link {
+  color: #94a3b8 !important;
+}
+
+html.dark header .nav-link:hover {
+  color: #60a5fa !important;
+}
+
+html.dark .nav-active {
+  color: #60a5fa !important;
+}
+
+html.dark .nav-active::after {
+  background-color: #60a5fa !important;
+}
+
+html.dark #mobile-menu {
+  background-color: #0f172a !important;
+  border-bottom-color: #1e293b !important;
+}
+
+html.dark #mobile-menu a {
+  color: #cbd5e1 !important;
+}
+
+html.dark #mobile-menu a:hover {
+  background-color: #1e293b !important;
+  color: #60a5fa !important;
+}
+
+/* Footer in Dark Mode */
+html.dark footer#footer {
+  background-color: #060913 !important;
+  border-top: 1px solid #1e293b;
+}
+
+/* General Cards & Surfaces */
+html.dark .bg-white {
+  background-color: #131b2e !important;
+  color: #cbd5e1;
+}
+
+html.dark .bg-white\/50,
+html.dark .bg-white\/60,
+html.dark .bg-white\/70,
+html.dark .bg-white\/80,
+html.dark .bg-white\/90,
+html.dark .bg-white\/95,
+html.dark [class*="bg-white/"] {
+  background-color: #131b2e !important;
+}
+
+html.dark .bg-slate-50,
+html.dark .bg-slate-100,
+html.dark [class*="bg-slate-50"],
+html.dark [class*="bg-slate-100"] {
+  background-color: #172136 !important;
+}
+
+html.dark .bg-\[\#f8fbfe\],
+html.dark .bg-\[\#fbfdff\] {
+  background-color: #0b0f19 !important;
+}
+
+/* Borders & Dividers */
+html.dark .border-slate-100,
+html.dark .border-slate-200,
+html.dark [class*="border-slate-100"],
+html.dark [class*="border-slate-200"],
+html.dark .border-teal-100,
+html.dark [class*="border-teal-100"] {
+  border-color: #1e293b !important;
+}
+
+html.dark .border-slate-300,
+html.dark .border-slate-400,
+html.dark [class*="border-slate-300"],
+html.dark [class*="border-slate-400"] {
+  border-color: #334155 !important;
+}
+
+html.dark .border-white {
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+html.dark .divide-slate-100 > *,
+html.dark [class*="divide-slate-100"] > *,
+html.dark [class*="divide-slate-200"] > * {
+  border-color: #1e293b !important;
+}
+
+/* Floating Ambient Decorative Shape Borders */
+html.dark .border-dashed,
+html.dark [class*="border-indigo-200"],
+html.dark [class*="border-teal-300"] {
+  border-color: rgba(96, 165, 250, 0.25) !important;
+}
+
+/* Typography Hierarchy */
+html.dark .text-slate-900 {
+  color: #f8fafc !important;
+}
+
+html.dark .text-slate-800 {
+  color: #e2e8f0 !important;
+}
+
+html.dark .text-slate-700 {
+  color: #cbd5e1 !important;
+}
+
+html.dark .text-slate-600 {
+  color: #94a3b8 !important;
+}
+
+html.dark .text-slate-500 {
+  color: #94a3b8 !important;
+}
+
+/* Specific Tinted Cards - Blues */
+html.dark .bg-\[\#eef6fe\],
+html.dark .bg-\[\#edf6fe\],
+html.dark .bg-\[\#edf5fd\],
+html.dark .bg-\[\#e1effe\],
+html.dark .bg-\[\#e2f0fd\],
+html.dark .bg-\[\#e4f1fc\],
+html.dark .bg-\[\#f0f7fe\] {
+  background-color: #131d31 !important;
+}
+
+html.dark .border-\[\#d8eafc\],
+html.dark .border-\[\#d8e8f8\],
+html.dark .border-\[\#d6e7f8\],
+html.dark .border-\[\#cbe4fb\],
+html.dark .border-\[\#d6e9fc\],
+html.dark .border-\[\#dce9f7\] {
+  border-color: #1e3354 !important;
+}
+
+/* Specific Tinted Cards - Greens & Emeralds */
+html.dark .bg-\[\#eefaf3\],
+html.dark .bg-\[\#eefbf4\],
+html.dark .bg-\[\#eff8f4\],
+html.dark .bg-\[\#daf5e6\] {
+  background-color: #0d221c !important;
+}
+
+html.dark .border-\[\#d2f3e1\],
+html.dark .border-\[\#bbf0d4\],
+html.dark .border-\[\#d2f2df\],
+html.dark .border-\[\#d3ede0\],
+html.dark .border-\[\#bbf0cf\] {
+  border-color: #174233 !important;
+}
+
+/* Specific Tinted Cards - Pinks & Roses */
+html.dark .bg-\[\#fdf2f4\],
+html.dark .bg-\[\#fef0f2\],
+html.dark .bg-\[\#fef1f3\],
+html.dark .bg-\[\#fce4e8\],
+html.dark .bg-\[\#fde2e6\],
+html.dark .bg-\[\#fdf0f2\] {
+  background-color: #241119 !important;
+}
+
+html.dark .border-\[\#fbdbe1\],
+html.dark .border-\[\#fbdde3\],
+html.dark .border-\[\#fbdce1\],
+html.dark .border-\[\#fccee4\] {
+  border-color: #4a1d2d !important;
+}
+
+/* Specific Tinted Cards - Ambers & Warm Yellows */
+html.dark .bg-\[\#fbf6ec\],
+html.dark .bg-\[\#fefaf0\],
+html.dark .bg-\[\#fef9e7\],
+html.dark .bg-\[\#fffcee\],
+html.dark .bg-\[\#fff7d9\],
+html.dark .bg-\[\#fef2d6\],
+html.dark .bg-\[\#fffbee\] {
+  background-color: #221a0f !important;
+}
+
+html.dark .border-\[\#fcefd0\],
+html.dark .border-\[\#f4e7cd\],
+html.dark .border-\[\#feea9f\] {
+  border-color: #483416 !important;
+}
+
+/* Specific Tinted Cards - Purples & Violets */
+html.dark .bg-\[\#f5effe\],
+html.dark .bg-\[\#f7f2fe\],
+html.dark .bg-\[\#f4effe\],
+html.dark .bg-\[\#f6f2fe\],
+html.dark .bg-\[\#efe3fe\],
+html.dark .bg-\[\#ede3fc\] {
+  background-color: #1a142c !important;
+}
+
+html.dark .border-\[\#e8dbfc\],
+html.dark .border-\[\#dfcffc\],
+html.dark .border-\[\#e4d4fc\],
+html.dark .border-\[\#e5d4fc\] {
+  border-color: #3b2361 !important;
+}
+
+/* Soft Color Borders */
+html.dark .border-emerald-100,
+html.dark .border-emerald-200,
+html.dark .border-emerald-300,
+html.dark [class*="border-emerald-"] {
+  border-color: #174233 !important;
+}
+html.dark .border-sky-100,
+html.dark .border-sky-200,
+html.dark .border-sky-300,
+html.dark [class*="border-sky-"],
+html.dark .border-blue-100,
+html.dark .border-blue-200,
+html.dark .border-blue-300,
+html.dark [class*="border-blue-"]:not(.border-dashed) {
+  border-color: #1e3354 !important;
+}
+html.dark .border-amber-100,
+html.dark .border-amber-200,
+html.dark .border-amber-300,
+html.dark [class*="border-amber-"] {
+  border-color: #483416 !important;
+}
+html.dark .border-rose-100,
+html.dark .border-rose-200,
+html.dark .border-rose-300,
+html.dark [class*="border-rose-"] {
+  border-color: #4a1d2d !important;
+}
+html.dark .border-purple-100,
+html.dark .border-purple-200,
+html.dark .border-purple-300,
+html.dark [class*="border-purple-"] {
+  border-color: #3b2361 !important;
+}
+html.dark .border-cyan-200,
+html.dark [class*="border-cyan-"] {
+  border-color: #15414d !important;
+}
+
+/* Soft Pastel Background Overrides (Solid dark surfaces, no unwanted transparency) */
+html.dark .bg-blue-50,
+html.dark [class*="bg-blue-50"] {
+  background-color: #131d31 !important;
+  border-color: #1e3354 !important;
+}
+html.dark .bg-emerald-50,
+html.dark [class*="bg-emerald-50"] {
+  background-color: #0d221c !important;
+  border-color: #174233 !important;
+}
+html.dark .bg-rose-50,
+html.dark [class*="bg-rose-50"] {
+  background-color: #241119 !important;
+  border-color: #4a1d2d !important;
+}
+html.dark .bg-purple-50,
+html.dark [class*="bg-purple-50"] {
+  background-color: #1a142c !important;
+  border-color: #3b2361 !important;
+}
+html.dark .bg-amber-50,
+html.dark [class*="bg-amber-50"] {
+  background-color: #221a0f !important;
+  border-color: #483416 !important;
+}
+html.dark .bg-cyan-50,
+html.dark [class*="bg-cyan-50"] {
+  background-color: #0d2127 !important;
+  border-color: #15414d !important;
+}
+
+/* Action buttons on pricing cards */
+html.dark a[class*="bg-blue-50"] {
+  background-color: #1e293b !important;
+  color: #93c5fd !important;
+  border: 1px solid #2e4063 !important;
+}
+html.dark a[class*="bg-purple-50"] {
+  background-color: #1e293b !important;
+  color: #d8b4fe !important;
+  border: 1px solid #3b2361 !important;
+}
+html.dark a[class*="bg-emerald-50"] {
+  background-color: #1e293b !important;
+  color: #6ee7b7 !important;
+  border: 1px solid #174233 !important;
+}
+
+/* CEFR level badges in Dark Mode */
+html.dark .level-badge-a1 {
+  background-color: #0d221c;
+  color: #34d399;
+  border-color: #174233;
+}
+html.dark .level-badge-a2 {
+  background-color: #131d31;
+  color: #38bdf8;
+  border-color: #1e3354;
+}
+html.dark .level-badge-b1 {
+  background-color: #221a0f;
+  color: #fbbf24;
+  border-color: #483416;
+}
+html.dark .level-badge-b2 {
+  background-color: #241119;
+  color: #fb7185;
+  border-color: #4a1d2d;
+}
+html.dark .level-badge-c1 {
+  background-color: #1a142c;
+  color: #c084fc;
+  border-color: #3b2361;
+}
+
+/* Background Grids in Dark Mode */
+html.dark .bg-grid-blueprint {
+  background-image: 
+    linear-gradient(to right, rgba(96, 165, 250, 0.14) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(96, 165, 250, 0.14) 1px, transparent 1px);
+}
+html.dark .bg-grid-dense {
+  background-image: 
+    linear-gradient(to right, rgba(129, 140, 248, 0.12) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(129, 140, 248, 0.12) 1px, transparent 1px);
+}
+html.dark .bg-dot-matrix {
+  background-image: radial-gradient(rgba(96, 165, 250, 0.22) 1.5px, transparent 1.5px);
+}
+
+/* Interactive elements in Dark Mode */
+html.dark #t-prev,
+html.dark #t-next {
+  background-color: #1e293b !important;
+  border-color: #334155 !important;
+  color: #cbd5e1 !important;
+}
+html.dark #t-prev:hover,
+html.dark #t-next:hover {
+  background-color: #27354f !important;
+  color: #60a5fa !important;
+  border-color: #3b82f6 !important;
+}
+
+/* Free Sample Tab Buttons */
+html.dark .sample-tab-btn {
+  background-color: #162033 !important;
+  color: #cbd5e1 !important;
+  border-color: #25334c !important;
+}
+html.dark .sample-tab-btn:hover {
+  background-color: #1c2b44 !important;
+}
+html.dark .sample-tab-btn.border-emerald-400,
+html.dark .sample-tab-btn[class*="border-emerald"] {
+  background-color: #0d221c !important;
+  color: #6ee7b7 !important;
+  border-color: #10b981 !important;
+}
+html.dark .sample-tab-btn.border-sky-400,
+html.dark .sample-tab-btn[class*="border-sky"] {
+  background-color: #131d31 !important;
+  color: #7dd3fc !important;
+  border-color: #0284c7 !important;
+}
+html.dark .sample-tab-btn.border-amber-400,
+html.dark .sample-tab-btn[class*="border-amber"] {
+  background-color: #221a0f !important;
+  color: #fde68a !important;
+  border-color: #f59e0b !important;
+}
+html.dark .sample-tab-btn.border-rose-400,
+html.dark .sample-tab-btn[class*="border-rose"] {
+  background-color: #241119 !important;
+  color: #fecdd3 !important;
+  border-color: #f43f5e !important;
+}
+html.dark .sample-tab-btn.border-purple-400,
+html.dark .sample-tab-btn[class*="border-purple"] {
+  background-color: #1a142c !important;
+  color: #ddd6fe !important;
+  border-color: #8b5cf6 !important;
+}
+html.dark .sample-tab-btn span {
+  color: inherit !important;
+}
+
+/* Shadows in Dark Mode */
+html.dark .shadow-2xs,
+html.dark .shadow-xs,
+html.dark .shadow-sm,
+html.dark .shadow,
+html.dark .shadow-md,
+html.dark .shadow-lg {
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Floating speech bubbles & photo overlays */
+html.dark [class*="absolute top-2 right-2 bg-white"] {
+  background-color: #1e293b !important;
+  color: #f8fafc !important;
+  border-color: #334155 !important;
+}
+
+html.dark [class*="bg-white/95"],
+html.dark [class*="bg-white/90"],
+html.dark [class*="bg-white/80"] {
+  background-color: #131b2e !important;
+  color: #f8fafc !important;
+  border-color: #1e293b !important;
+}
+
+/* Handwritten Annotations in Dark Mode */
+html.dark .font-handwriting {
+  color: #60a5fa !important;
+}
+html.dark .font-handwriting svg {
+  color: #60a5fa !important;
+}
+
+/* Built for Schools - Dashboard Window & Metric Strip */
+html.dark [class*="from-blue-100/90"] {
+  background-image: linear-gradient(to bottom, #1e293b 0%, #172136 50%, #0f172a 100%) !important;
+  border-color: #27354f !important;
+}
+
+html.dark .bg-\[\#fbfdff\] {
+  background-color: #131b2e !important;
+  border-color: #1e293b !important;
+}
+
+/* Built for Schools - 6 Feature Cards (Solid Surfaces, Established Palette) */
+html.dark #section-built-for-schools [class*="bg-blue-50"] {
+  background-color: #131d31 !important;
+  border-color: #1e3354 !important;
+}
+html.dark #section-built-for-schools [class*="bg-emerald-50"] {
+  background-color: #0d221c !important;
+  border-color: #174233 !important;
+}
+html.dark #section-built-for-schools [class*="bg-rose-50"] {
+  background-color: #241119 !important;
+  border-color: #4a1d2d !important;
+}
+html.dark #section-built-for-schools [class*="bg-purple-50"] {
+  background-color: #1a142c !important;
+  border-color: #3b2361 !important;
+}
+html.dark #section-built-for-schools [class*="bg-amber-50"] {
+  background-color: #221a0f !important;
+  border-color: #483416 !important;
+}
+html.dark #section-built-for-schools [class*="bg-cyan-50"] {
+  background-color: #0d2127 !important;
+  border-color: #15414d !important;
+}
+
+/* How It Works - Cards, Inner Panels & Radio Dots */
+html.dark #how-it-works .bg-white {
+  background-color: #131b2e !important;
+  border-color: #1e293b !important;
+}
+html.dark #how-it-works [class*="bg-slate-50"] {
+  background-color: #0c1424 !important;
+  border-color: #1a2744 !important;
+}
+html.dark #how-it-works .border-slate-300.bg-white,
+html.dark #how-it-works .border-slate-300 {
+  background-color: #1e293b !important;
+  border-color: #334155 !important;
+}
+html.dark #how-it-works .rounded-sm.bg-white {
+  background-color: #1e293b !important;
+  border-color: #334155 !important;
+  color: #f1f5f9 !important;
+}
+
+/* Lesson Preview - Interactive Tabs & Controls */
+html.dark #lesson-preview .bg-slate-50 {
+  background-color: #0f172a !important;
+  border-color: #1e293b !important;
+}
+html.dark #lesson-preview .preview-step-btn:not(.bg-blue-600) {
+  color: #cbd5e1 !important;
+}
+html.dark #lesson-preview .preview-step-btn:not(.bg-blue-600):hover {
+  background-color: #1e293b !important;
+  color: #60a5fa !important;
+}
+html.dark #lesson-preview button.bg-white {
+  background-color: #1e293b !important;
+  color: #f8fafc !important;
+  border-color: #334155 !important;
+}
+
+/* For Teachers - Dual Showcase Cards */
+html.dark #section-get-started .bg-white {
+  background-color: #131b2e !important;
+  border-color: #1e293b !important;
+}
+html.dark #section-get-started .aspect-4\/3 {
+  background-color: #0c1424 !important;
+}
+
+/* Pricing - Plans Glow & Border */
+html.dark #section-pricing .bg-white {
+  background-color: #131b2e !important;
+  border-color: #1e293b !important;
+}
+html.dark #section-pricing .border-2.border-emerald-500 {
+  border-color: #10b981 !important;
+  box-shadow: 0 0 30px -5px rgba(16, 185, 129, 0.25) !important;
+}
+
+/* Free Sample - Interactive Tabs, Carousel Arrow & Container */
+html.dark #section-free-sample .bg-white {
+  background-color: #131b2e !important;
+  border-color: #1e293b !important;
+}
+html.dark #section-free-sample .bg-\[\#edf5fd\] {
+  background-color: #101828 !important;
+  border-color: #1e293b !important;
+}
+html.dark #section-free-sample #sample-next-btn {
+  background-color: #1e293b !important;
+  border-color: #334155 !important;
+  color: #60a5fa !important;
+}
+html.dark #section-free-sample #sample-next-btn:hover {
+  background-color: #27354f !important;
+}
+
+/* Testimonials Carousel & Cards */
+html.dark .mobile-t-card {
+  background-color: #172136 !important;
+  border-color: #24344d !important;
+  color: #f1f5f9 !important;
+}
+html.dark .mobile-t-card p {
+  color: #e2e8f0 !important;
+}
+html.dark .mobile-t-card .border-t {
+  border-color: #24344d !important;
+}
+html.dark .mobile-t-card .bg-slate-100 {
+  background-color: #1e293b !important;
+  border-color: #334155 !important;
+}
+
+/* Badges & Pills */
+html.dark .section-pill,
+html.dark .bg-\[\#e1effe\],
+html.dark .bg-blue-100\/70,
+html.dark .bg-blue-50.rounded-full,
+html.dark [class*="bg-blue-100"].rounded-full {
+  background-color: rgba(30, 58, 138, 0.4) !important;
+  color: #93c5fd !important;
+  border: 1px solid rgba(59, 130, 246, 0.3) !important;
+}
+
+html.dark .section-pill *,
+html.dark .bg-\[\#e1effe\] *,
+html.dark .bg-blue-100\/70 *,
+html.dark .bg-blue-50.rounded-full * {
+  color: #93c5fd !important;
+}
+
+html.dark .section-pill .bg-blue-600,
+html.dark .bg-\[\#e1effe\] .bg-blue-600,
+html.dark .bg-blue-100\/70 .bg-blue-600,
+html.dark .bg-blue-50.rounded-full .bg-blue-600 {
+  background-color: #60a5fa !important;
+}
+
+html.dark .section-pill svg,
+html.dark .bg-\[\#e1effe\] svg,
+html.dark .bg-blue-100\/70 svg {
+  color: #93c5fd !important;
+  stroke: #93c5fd !important;
+}
+html.dark .bg-emerald-100,
+html.dark [class*="bg-emerald-100"]:not(.rounded-full) {
+  background-color: #0d221c !important;
+  color: #6ee7b7 !important;
+}
+html.dark .bg-sky-100,
+html.dark [class*="bg-sky-100"]:not(.rounded-full) {
+  background-color: #131d31 !important;
+  color: #7dd3fc !important;
+}
+html.dark .bg-amber-100,
+html.dark [class*="bg-amber-100"]:not(.rounded-full) {
+  background-color: #221a0f !important;
+  color: #fde68a !important;
+}
+html.dark .bg-rose-100,
+html.dark [class*="bg-rose-100"]:not(.rounded-full) {
+  background-color: #241119 !important;
+  color: #fecdd3 !important;
+}
+html.dark .bg-purple-100,
+html.dark [class*="bg-purple-100"]:not(.rounded-full) {
+  background-color: #1a142c !important;
+  color: #ddd6fe !important;
+}
+
+/* Secondary Button Inversions in Dark Mode */
+html.dark a.bg-white.text-\[\#0052FF\],
+html.dark a.bg-white.text-slate-800 {
+  background-color: #1a253c !important;
+  color: #93c5fd !important;
+  border-color: #2e4063 !important;
+}
+html.dark a.bg-white.text-\[\#0052FF\]:hover,
+html.dark a.bg-white.text-slate-800:hover {
+  background-color: #243452 !important;
+  border-color: #3b82f6 !important;
+}
+html.dark a.bg-white.text-\[\#0052FF\] span,
+html.dark a.bg-white.text-\[\#0052FF\] [class*="border-\[\#0052FF\]"] {
+  border-color: #60a5fa !important;
+}
+html.dark a.bg-white.text-\[\#0052FF\] svg,
+html.dark a.bg-white.text-\[\#0052FF\] [class*="text-\[\#0052FF\]"] {
+  color: #60a5fa !important;
+  fill: #60a5fa !important;
+}
+
+/* ========================================================================= */
+/* DARK MODE TEXT & ICON CONTRAST FIXES                                      */
+/* ========================================================================= */
+html.dark .text-emerald-600,
+html.dark .text-emerald-700,
+html.dark [class*="text-emerald-600"],
+html.dark [class*="text-emerald-700"] {
+  color: #34d399 !important;
+}
+html.dark .text-emerald-800,
+html.dark .text-emerald-900,
+html.dark .text-emerald-950,
+html.dark [class*="text-emerald-800"],
+html.dark [class*="text-emerald-900"],
+html.dark [class*="text-emerald-950"] {
+  color: #6ee7b7 !important;
+}
+
+html.dark .text-sky-600,
+html.dark .text-sky-700,
+html.dark [class*="text-sky-600"],
+html.dark [class*="text-sky-700"] {
+  color: #38bdf8 !important;
+}
+html.dark .text-sky-800,
+html.dark .text-sky-900,
+html.dark [class*="text-sky-800"],
+html.dark [class*="text-sky-900"] {
+  color: #7dd3fc !important;
+}
+
+html.dark .text-blue-600,
+html.dark .text-blue-700,
+html.dark .text-\[\#2563eb\],
+html.dark .text-\[\#0052FF\],
+html.dark [class*="text-blue-600"]:not(.bg-blue-600),
+html.dark [class*="text-blue-700"] {
+  color: #60a5fa !important;
+}
+
+html.dark .text-amber-600,
+html.dark .text-amber-700,
+html.dark [class*="text-amber-600"],
+html.dark [class*="text-amber-700"] {
+  color: #fbbf24 !important;
+}
+html.dark .text-amber-800,
+html.dark .text-amber-900,
+html.dark [class*="text-amber-800"],
+html.dark [class*="text-amber-900"] {
+  color: #fde68a !important;
+}
+
+html.dark .text-rose-600,
+html.dark .text-rose-700,
+html.dark [class*="text-rose-600"],
+html.dark [class*="text-rose-700"] {
+  color: #fb7185 !important;
+}
+html.dark .text-rose-800,
+html.dark .text-rose-900,
+html.dark [class*="text-rose-800"],
+html.dark [class*="text-rose-900"] {
+  color: #fecdd3 !important;
+}
+
+html.dark .text-purple-600,
+html.dark .text-purple-700,
+html.dark [class*="text-purple-600"],
+html.dark [class*="text-purple-700"] {
+  color: #c084fc !important;
+}
+html.dark .text-purple-800,
+html.dark .text-purple-900,
+html.dark [class*="text-purple-800"],
+html.dark [class*="text-purple-900"] {
+  color: #ddd6fe !important;
+}
+
+html.dark .text-teal-700,
+html.dark [class*="text-teal-700"] {
+  color: #2dd4bf !important;
+}
+
+/* School Logos in Ticker */
+html.dark .text-\[\#1e3a8a\] {
+  color: #93c5fd !important;
+}
+html.dark .text-\[\#0f172a\],
+html.dark .text-\[\#1e293b\] {
+  color: #cbd5e1 !important;
+}
+
+/* Learning Pathway SVG stroke */
+html.dark svg path[stroke="#2563eb"] {
+  stroke: #60a5fa !important;
+}
+
 

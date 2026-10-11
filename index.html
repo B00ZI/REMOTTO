@@ -10,6 +10,21 @@
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
 
+    <!-- Immediate Theme Detection Script -->
+    <script>
+      (function() {
+        try {
+          var saved = localStorage.getItem('remtoo-theme');
+          var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (saved === 'dark' || (!saved && prefersDark)) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+
     <!-- Google Fonts: Plus Jakarta Sans & Caveat for authentic handwritten annotations -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -75,19 +90,40 @@
           <a href="#free-sample" data-nav-page="free-sample" class="nav-link hover:text-blue-600 transition-colors whitespace-nowrap">Free Sample</a>
         </nav>
 
-        <!-- Primary Action -->
+        <!-- Primary Action & Theme Toggle -->
         <div class="hidden sm:flex items-center gap-3 shrink-0">
+          <!-- Desktop Dark Mode Toggle Button -->
+          <button id="theme-toggle-desktop" type="button" aria-label="Toggle dark mode" title="Toggle theme (Light / Dark)" class="p-2.5 rounded-full text-slate-500 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-400 dark:hover:text-amber-300 dark:hover:bg-slate-800 transition-colors border border-slate-200/80 dark:border-slate-700 cursor-pointer shadow-2xs flex items-center justify-center">
+            <!-- Sun icon (visible in dark mode) -->
+            <svg class="w-4 h-4 hidden dark:block text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+            </svg>
+            <!-- Moon icon (visible in light mode) -->
+            <svg class="w-4 h-4 block dark:hidden text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+            </svg>
+          </button>
           <a href="#built-for-schools" data-nav-page="built-for-schools" class="px-5 py-2.5 text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-full shadow-sm hover:shadow transition-all duration-200 whitespace-nowrap">
             Book a Demo
           </a>
         </div>
 
-        <!-- Mobile Menu Toggle -->
-        <button id="mobile-menu-btn" type="button" aria-label="Toggle Navigation Menu" class="md:hidden p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        </button>
+        <!-- Mobile Controls (Theme Toggle & Menu Button) -->
+        <div class="flex items-center gap-2 md:hidden">
+          <button id="theme-toggle-mobile" type="button" aria-label="Toggle dark mode" title="Toggle theme" class="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors border border-slate-200/80 dark:border-slate-700 flex items-center justify-center">
+            <svg class="w-5 h-5 hidden dark:block text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+            </svg>
+            <svg class="w-5 h-5 block dark:hidden text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+            </svg>
+          </button>
+          <button id="mobile-menu-btn" type="button" aria-label="Toggle Navigation Menu" class="p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-300 dark:hover:text-white dark:hover:bg-slate-800 transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+        </div>
       </div>
 
       <!-- Mobile Dropdown Menu -->
@@ -101,6 +137,19 @@
         <div class="pt-2">
           <a href="#built-for-schools" data-nav-page="built-for-schools" class="block w-full text-center px-4 py-2.5 text-sm font-semibold text-white bg-blue-600 rounded-full">Book a Demo</a>
         </div>
+        <!-- Theme Toggle in Mobile Menu -->
+        <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between px-3 py-2">
+          <span class="text-sm font-medium text-slate-600 dark:text-slate-400">Theme</span>
+          <button id="theme-toggle-menu" type="button" class="flex items-center gap-2 px-3.5 py-1.5 text-xs font-semibold rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition-colors">
+            <svg class="w-3.5 h-3.5 hidden dark:block text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+            </svg>
+            <svg class="w-3.5 h-3.5 block dark:hidden text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+            </svg>
+            <span class="theme-mode-text">Dark Mode</span>
+          </button>
+        </div>
       </div>
     </header>
 
@@ -111,7 +160,7 @@
       <!-- PAGE 1: HOME -->
       <!-- ========================================================================= -->
       <div id="view-home" class="page-view">
-        <section id="hero" class="relative pt-12 pb-20 overflow-hidden bg-gradient-to-b from-[#eef6ff]/80 via-[#f8fbfe]/70 to-white">
+        <section id="hero" class="relative pt-12 pb-20 overflow-hidden bg-gradient-to-b from-[#eef6ff]/80 via-[#f8fbfe]/70 to-white dark:from-[#0b0f19] dark:via-[#0e1628] dark:to-[#0b0f19]">
         <!-- Background subtle ambiance, grid lines & floating shapes -->
         <div class="absolute inset-0 pointer-events-none overflow-hidden select-none z-0">
           <!-- Architectural Grid Lines Pattern -->
@@ -163,8 +212,8 @@
             <div class="lg:col-span-7 space-y-6 text-left">
               
               <!-- Kicker -->
-              <div class="inline-flex items-center gap-2 text-xs font-bold tracking-widest text-slate-500 uppercase">
-                <span class="w-2 h-2 rounded-full bg-blue-600"></span>
+              <div class="section-pill inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#e1effe] text-[#2563eb] text-xs font-black tracking-widest uppercase shadow-xs mb-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
                 <span>Teach English. Create Brighter Futures.</span>
               </div>
 
@@ -239,7 +288,7 @@
                 </div>
 
                 <!-- Floating Interactive Lesson Preview Card -->
-                <div class="absolute -top-5 -left-5 bg-white/95 backdrop-blur-md border border-slate-200/80 rounded-2xl p-3.5 shadow-xl max-w-[210px] hidden sm:block">
+                <div class="absolute -top-5 -left-5 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border border-slate-200/80 dark:border-slate-700 rounded-2xl p-3.5 shadow-xl max-w-[210px] hidden sm:block">
                   <div class="flex items-center gap-2 mb-2">
                     <span class="w-6 h-6 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center">
                       <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -333,7 +382,7 @@
 
         </div>
       </section>
-        <section id="why-remtoo" class="py-20 lg:py-24 bg-gradient-to-b from-white via-[#f8fbfe]/60 to-white border-t border-slate-100 relative overflow-hidden">
+        <section id="why-remtoo" class="py-20 lg:py-24 bg-gradient-to-b from-white via-[#f8fbfe]/60 to-white dark:from-[#0b0f19] dark:via-[#0e1628] dark:to-[#0b0f19] border-t border-slate-100 dark:border-slate-800 relative overflow-hidden">
         <div class="absolute inset-0 pointer-events-none overflow-hidden select-none z-0">
           <div class="absolute inset-0 bg-grid-dense opacity-35"></div>
           <div class="absolute top-1/4 -right-24 w-96 h-96 bg-blue-100/40 rounded-full blur-3xl"></div>
@@ -347,7 +396,7 @@
           
           <!-- Section Header (Matching why choose remotoo.jpeg) -->
           <div class="text-center max-w-3xl mx-auto mb-12 space-y-3.5 relative">
-            <span class="inline-block px-4 py-1.5 text-xs font-black tracking-widest text-[#2563eb] bg-[#e1effe] rounded-full uppercase">
+            <span class="section-pill inline-block px-4 py-1.5 text-xs font-black tracking-widest text-[#2563eb] bg-[#e1effe] rounded-full uppercase shadow-xs">
               WHY CHOOSE REMTOO
             </span>
             <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight">
@@ -628,11 +677,11 @@
 
         </div>
       </section>
-        <section class="relative pt-0 pb-0 bg-gradient-to-b from-[#eaf2fd] via-[#f5f9fe] to-white overflow-hidden">
+        <section class="cta-section relative pt-0 pb-0 bg-gradient-to-b from-[#eaf2fd] via-[#f5f9fe] to-white dark:from-[#0b0f19] dark:via-[#0e172a] dark:to-[#060913] overflow-hidden">
         <!-- Top Organic Smooth Wave Divider Transitioning into CTA -->
         <div class="w-full overflow-hidden leading-none relative z-10 -mt-px pointer-events-none select-none">
           <svg 
-            class="relative block w-full h-8 sm:h-12 md:h-14" 
+            class="cta-wave-top relative block w-full h-8 sm:h-12 md:h-14" 
             viewBox="0 0 1440 90" 
             fill="none" 
             xmlns="http://www.w3.org/2000/svg"
@@ -640,12 +689,14 @@
           >
             <!-- Layer 1: Soft sky wave behind -->
             <path 
+              class="cta-top-wave-1 transition-colors"
               d="M0,0 L1440,0 L1440,55 C1220,80 960,30 720,65 C480,95 240,40 0,65 Z" 
               fill="#bfdbfe" 
               fill-opacity="0.45"
             />
             <!-- Layer 2: White organic wave crest flowing from previous section into CTA -->
             <path 
+              class="cta-top-wave-2 transition-colors"
               d="M0,0 L1440,0 L1440,35 C1200,65 940,15 700,50 C440,80 200,20 0,45 Z" 
               fill="#ffffff"
             />
@@ -654,26 +705,27 @@
 
         <!-- CTA ambient background grid, glow & sparkles -->
         <div class="absolute inset-0 pointer-events-none overflow-hidden select-none z-0">
-          <div class="absolute inset-0 bg-grid-dense opacity-35"></div>
-          <div class="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-64 bg-blue-400/12 rounded-full blur-3xl animate-ambient-pulse"></div>
-          <div class="absolute top-1/2 right-1/4 -translate-y-1/2 w-80 h-64 bg-indigo-400/10 rounded-full blur-3xl"></div>
-          <div class="absolute top-6 left-[8%] w-10 h-10 rounded-full border border-blue-200/50 animate-ambient-float"></div>
+          <div class="absolute inset-0 bg-grid-dense opacity-35 dark:opacity-20"></div>
+          <div class="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-64 bg-blue-400/12 dark:bg-blue-500/10 rounded-full blur-3xl animate-ambient-pulse"></div>
+          <div class="absolute top-1/2 right-1/4 -translate-y-1/2 w-80 h-64 bg-indigo-400/10 dark:bg-indigo-500/10 rounded-full blur-3xl"></div>
+          <div class="absolute top-6 left-[8%] w-10 h-10 rounded-full border border-blue-200/50 dark:border-blue-400/30 animate-ambient-float"></div>
           <div class="absolute top-8 right-[10%] text-amber-400/70 animate-ambient-float-reverse">
             <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z"/></svg>
           </div>
-          <div class="absolute top-12 left-[20%] text-blue-300/40 font-mono text-lg">+</div>
-          <div class="absolute top-14 right-[25%] text-slate-300 font-mono text-lg">+</div>
+          <div class="absolute top-12 left-[20%] text-blue-300/40 dark:text-blue-400/30 font-mono text-lg">+</div>
+          <div class="absolute top-14 right-[25%] text-slate-300 dark:text-slate-600 font-mono text-lg">+</div>
         </div>
-        <!-- Main CTA Content (Shorter vertical profile) -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pb-6 sm:pb-8">
+
+        <!-- Main CTA Content (Generous vertical padding for centered balance) -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-12 sm:pt-16 lg:pt-20 pb-12 sm:pb-16 lg:pb-20">
           <div class="flex flex-col lg:flex-row items-center justify-between gap-6 relative max-w-5xl mx-auto">
             
             <!-- Left Headline & Subtitle -->
             <div class="text-center lg:text-left space-y-2 max-w-xl">
-              <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight leading-tight">
+              <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
                 Ready to make a bigger impact with English education?
               </h2>
-              <p class="text-sm sm:text-base text-slate-600 font-medium">
+              <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 font-medium">
                 Join thousands of teachers and schools using Remtoo.
               </p>
             </div>
@@ -682,20 +734,20 @@
             <div class="flex flex-col items-center lg:items-end text-center lg:text-right shrink-0 relative">
               <a 
                 href="#built-for-schools" 
-                class="px-7 py-3 text-xs sm:text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-full shadow-md hover:shadow-lg transition-all inline-flex items-center gap-2 group"
+                class="px-7 py-3 text-xs sm:text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-full shadow-md hover:shadow-lg transition-all inline-flex items-center gap-2 group cursor-pointer"
               >
                 <span>Book a 15-Minute Demo</span>
                 <span class="group-hover:translate-x-0.5 transition-transform">→</span>
               </a>
-              <p class="text-xs sm:text-sm text-slate-500 mt-1.5 font-medium">
+              <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1.5 font-medium">
                 No commitment. Just a better way to teach.
               </p>
 
               <!-- Handwritten Accent: "Better Teachers. Brighter Futures." -->
-              <div class="mt-2.5 font-handwriting text-xl sm:text-2xl text-blue-600 -rotate-3 select-none leading-tight">
+              <div class="mt-2.5 font-handwriting text-xl sm:text-2xl text-blue-600 dark:text-blue-400 -rotate-3 select-none leading-tight">
                 <div>Better Teachers.</div>
                 <div>Brighter Futures.</div>
-                <div class="w-14 h-0.5 bg-blue-400/50 rounded-full mx-auto lg:ml-auto mt-0.5 rotate-2"></div>
+                <div class="w-14 h-0.5 bg-blue-400/50 dark:bg-blue-400/40 rounded-full mx-auto lg:ml-auto mt-0.5 rotate-2"></div>
               </div>
             </div>
 
@@ -705,7 +757,7 @@
         <!-- Layered Organic Waves Leading into Navy Footer (Compact Height) -->
         <div class="w-full overflow-hidden leading-none relative z-10">
           <svg 
-            class="relative block w-full h-10 sm:h-16 md:h-20" 
+            class="cta-wave-bottom relative block w-full h-10 sm:h-16 md:h-20" 
             viewBox="0 0 1440 180" 
             fill="none" 
             xmlns="http://www.w3.org/2000/svg"
@@ -713,18 +765,21 @@
           >
             <!-- Layer 1: Soft Sky/Ice Blue wave behind -->
             <path 
+              class="cta-bot-wave-1 transition-colors"
               d="M0,90 C320,160 540,20 880,100 C1160,160 1340,80 1440,110 L1440,180 L0,180 Z" 
               fill="#dbeafe" 
               fill-opacity="0.6"
             />
             <!-- Layer 2: Medium Soft Blue wave middle -->
             <path 
+              class="cta-bot-wave-2 transition-colors"
               d="M0,120 C280,60 620,160 960,110 C1200,80 1360,130 1440,140 L1440,180 L0,180 Z" 
               fill="#bfdbfe" 
               fill-opacity="0.8"
             />
             <!-- Layer 3: Solid Dark Navy Wave matching footer (#0b1329) -->
             <path 
+              class="cta-bot-wave-3 transition-colors"
               d="M0,140 C360,110 720,180 1080,130 C1260,110 1380,150 1440,160 L1440,180 L0,180 Z" 
               fill="#0b1329"
             />
@@ -737,7 +792,7 @@
       <!-- PAGE 2: CURRICULUM -->
       <!-- ========================================================================= -->
       <div id="view-curriculum" class="page-view hidden-view">
-        <section id="section-curriculum" class="py-20 lg:py-24 bg-gradient-to-b from-[#eef6ff]/80 via-[#f8fbfe]/70 to-white relative overflow-hidden">
+        <section id="section-curriculum" class="py-20 lg:py-24 bg-gradient-to-b from-[#eef6ff]/80 via-[#f8fbfe]/70 to-white dark:from-[#0b0f19] dark:via-[#0e1628] dark:to-[#0b0f19] relative overflow-hidden">
         <!-- Background subtle ambiance, grid lines & floating shapes -->
         <div class="absolute inset-0 pointer-events-none overflow-hidden select-none z-0">
           <!-- Architectural Grid Lines Pattern -->
@@ -784,7 +839,7 @@
           
           <!-- Section Header -->
           <div class="text-center max-w-3xl mx-auto mb-10 space-y-3">
-            <span class="inline-block px-4 py-1 text-xs font-bold tracking-wider text-blue-600 bg-blue-100/70 rounded-full uppercase">
+            <span class="section-pill inline-block px-4 py-1.5 text-xs font-black tracking-widest text-[#2563eb] bg-[#e1effe] rounded-full uppercase shadow-xs">
               Our Curriculum
             </span>
             <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
@@ -876,7 +931,7 @@
                   </p>
                   <div class="relative rounded-2xl overflow-hidden aspect-4/3 bg-white mb-4 shadow-xs">
                     <img src="/src/assets/images/curriculum_teacher_a1_1791647237023.jpg" alt="A1 Teacher" class="w-full h-full object-cover object-top" />
-                    <div class="absolute top-2 right-2 bg-white text-slate-800 text-[11px] font-bold px-2.5 py-1 rounded-full shadow-md border border-slate-100 flex items-center gap-1">
+                    <div class="absolute top-2 right-2 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 text-[11px] font-bold px-2.5 py-1 rounded-full shadow-md border border-slate-100 dark:border-slate-700 flex items-center gap-1">
                       <span>Hello!</span>
                     </div>
                   </div>
@@ -934,7 +989,7 @@
                   </p>
                   <div class="relative rounded-2xl overflow-hidden aspect-4/3 bg-white mb-4 shadow-xs">
                     <img src="/src/assets/images/curriculum_teacher_a2_1791647249722.jpg" alt="A2 Teacher" class="w-full h-full object-cover object-top" />
-                    <div class="absolute top-2 right-2 bg-white text-slate-800 text-[11px] font-bold px-2.5 py-1 rounded-full shadow-md border border-slate-100 flex items-center gap-1">
+                    <div class="absolute top-2 right-2 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 text-[11px] font-bold px-2.5 py-1 rounded-full shadow-md border border-slate-100 dark:border-slate-700 flex items-center gap-1">
                       <span>Nice to meet you</span>
                     </div>
                   </div>
@@ -992,7 +1047,7 @@
                   </p>
                   <div class="relative rounded-2xl overflow-hidden aspect-4/3 bg-white mb-4 shadow-xs">
                     <img src="/src/assets/images/curriculum_teacher_b1_1791647260396.jpg" alt="B1 Teacher" class="w-full h-full object-cover object-top" />
-                    <div class="absolute top-2 right-2 bg-white text-slate-800 text-[11px] font-bold px-2.5 py-1 rounded-full shadow-md border border-slate-100 flex items-center gap-1">
+                    <div class="absolute top-2 right-2 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 text-[11px] font-bold px-2.5 py-1 rounded-full shadow-md border border-slate-100 dark:border-slate-700 flex items-center gap-1">
                       <span>I believe that...</span>
                     </div>
                   </div>
@@ -1050,7 +1105,7 @@
                   </p>
                   <div class="relative rounded-2xl overflow-hidden aspect-4/3 bg-white mb-4 shadow-xs">
                     <img src="/src/assets/images/curriculum_teacher_b2_1791647270910.jpg" alt="B2 Teacher" class="w-full h-full object-cover object-top" />
-                    <div class="absolute top-2 right-2 bg-white text-slate-800 text-[11px] font-bold px-2.5 py-1 rounded-full shadow-md border border-slate-100 flex items-center gap-1">
+                    <div class="absolute top-2 right-2 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 text-[11px] font-bold px-2.5 py-1 rounded-full shadow-md border border-slate-100 dark:border-slate-700 flex items-center gap-1">
                       <span>Great point!</span>
                     </div>
                   </div>
@@ -1108,7 +1163,7 @@
                   </p>
                   <div class="relative rounded-2xl overflow-hidden aspect-4/3 bg-white mb-4 shadow-xs">
                     <img src="/src/assets/images/curriculum_teacher_c1_1791647281514.jpg" alt="C1 Teacher" class="w-full h-full object-cover object-top" />
-                    <div class="absolute top-2 right-2 bg-white text-slate-800 text-[11px] font-bold px-2.5 py-1 rounded-full shadow-md border border-slate-100 flex items-center gap-1">
+                    <div class="absolute top-2 right-2 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 text-[11px] font-bold px-2.5 py-1 rounded-full shadow-md border border-slate-100 dark:border-slate-700 flex items-center gap-1">
                       <span>Let's discuss...</span>
                     </div>
                   </div>
@@ -1178,11 +1233,259 @@
       </section>
       
 
-        <section class="relative pt-0 pb-0 bg-gradient-to-b from-[#eaf2fd] via-[#f5f9fe] to-white overflow-hidden">
+       
+
+<section id="lesson-preview" class="py-20 bg-gradient-to-b from-white via-[#f8fbfe]/50 to-white dark:from-[#0b0f19] dark:via-[#0e1628] dark:to-[#0b0f19] border-b border-slate-100 dark:border-slate-800 relative overflow-hidden">
+        <div class="absolute inset-0 pointer-events-none bg-grid-dense opacity-30 z-0"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <!-- Section Header Matching Design -->
+          <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+            <span class="section-pill inline-flex items-center gap-1.5 px-4 py-1.5 text-xs font-black tracking-widest text-[#2563eb] bg-[#e1effe] rounded-full uppercase shadow-xs">
+              <svg class="w-3.5 h-3.5 text-[#2563eb]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+              </svg>
+              SEE A REAL LESSON
+            </span>
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">
+              See A Real Lesson
+            </h2>
+            <p class="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto leading-relaxed">
+              Explore how each 60-minute session is carefully structured for maximum student engagement and zero prep for teachers.
+            </p>
+          </div>
+
+          <!-- 2-Column Section Layout: Left Video Player, Right 3 Cards + CTA Button & Message -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center max-w-6xl mx-auto mb-16">
+            
+            <!-- LEFT COLUMN: Clean Video Player with Bottom Slide Switcher Tabs (Top bar removed) -->
+            <div class="lg:col-span-7">
+              <div class="relative bg-white dark:bg-slate-900 rounded-2xl border-2 border-slate-200 dark:border-slate-800 shadow-xl overflow-hidden group">
+                
+                <!-- Slide Mockup Body with Interactive Slide Visual -->
+                <div class="relative aspect-video bg-slate-950 overflow-hidden">
+                  <img 
+                    id="lesson-preview-img"
+                    src="/src/assets/images/lesson_slide_screen_hd_1791655336308.jpg" 
+                    alt="Remtoo Lesson 1: Meet and Greet slide screen preview"
+                    class="w-full h-full object-cover transition-all duration-300"
+                  />
+
+                  <!-- Floating Play Button & Audio Overlay Indicator -->
+                  <div class="absolute inset-0 bg-slate-950/20 hover:bg-slate-950/10 transition-colors flex items-center justify-center pointer-events-none">
+                    <div class="w-14 h-14 rounded-full bg-blue-600/90 text-white flex items-center justify-center shadow-lg transform group-hover:scale-105 transition-transform">
+                      <svg class="w-6 h-6 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
+                    </div>
+                  </div>
+
+                  <!-- Bottom Audio Player Controls Bar -->
+                  <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-950/90 via-slate-950/60 to-transparent p-3 pt-6 flex items-center justify-between text-white text-xs">
+                    <div class="flex items-center gap-2.5">
+                      <button type="button" class="w-7 h-7 rounded-full bg-white text-slate-900 flex items-center justify-center hover:bg-blue-50 transition-colors shadow">
+                        <svg class="w-3.5 h-3.5 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
+                      </button>
+                      <span class="font-mono text-[11px] text-slate-200">02:14 / 08:30</span>
+                      <div class="hidden sm:flex items-center gap-1 text-slate-300 text-[11px]">
+                        <span class="w-1 h-3 bg-blue-400 rounded-full animate-pulse"></span>
+                        <span class="w-1 h-4 bg-blue-400 rounded-full animate-pulse"></span>
+                        <span class="w-1 h-2 bg-blue-400 rounded-full animate-pulse"></span>
+                        <span class="w-1 h-5 bg-blue-400 rounded-full animate-pulse"></span>
+                        <span class="ml-1 text-[10px] text-slate-300">Native Audio</span>
+                      </div>
+                    </div>
+                    <div class="flex items-center gap-2 text-slate-300 text-[11px]">
+                      <span class="px-2 py-0.5 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">Slide 1 of 8</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Bottom Slide Quick Switcher Tabs (Available Videos / Slides) -->
+                <div class="bg-slate-50 dark:bg-slate-800 p-2.5 border-t border-slate-200 dark:border-slate-700">
+                  <div class="flex items-center justify-between gap-1 overflow-x-auto text-[11px] font-semibold text-slate-600 dark:text-slate-300 pb-0.5">
+                    <button type="button" onclick="switchPreviewSlide(0)" class="preview-step-btn px-2.5 py-1.5 rounded-lg bg-blue-600 text-white font-bold whitespace-nowrap shadow-2xs">
+                      1. Warm-Up & Intro
+                    </button>
+                    <button type="button" onclick="switchPreviewSlide(1)" class="preview-step-btn px-2.5 py-1.5 rounded-lg hover:bg-slate-200/80 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 whitespace-nowrap transition-colors">
+                      2. Vocabulary Cards
+                    </button>
+                    <button type="button" onclick="switchPreviewSlide(2)" class="preview-step-btn px-2.5 py-1.5 rounded-lg hover:bg-slate-200/80 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 whitespace-nowrap transition-colors">
+                      3. Video Dialogue
+                    </button>
+                    <button type="button" onclick="switchPreviewSlide(3)" class="preview-step-btn px-2.5 py-1.5 rounded-lg hover:bg-slate-200/80 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 whitespace-nowrap transition-colors">
+                      4. Pair Speaking
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Quick sub-caption below video -->
+              <p class="text-center text-xs text-slate-500 dark:text-slate-400 mt-3 flex items-center justify-center gap-1.5">
+                <svg class="w-3.5 h-3.5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                <span>Interactive screen tested on Zoom, Google Meet, Teams, and classroom interactive whiteboards.</span>
+              </p>
+            </div>
+
+            <!-- RIGHT COLUMN: 3 Cards on the right + Button and Message at bottom -->
+            <div class="lg:col-span-5 flex flex-col justify-center space-y-6">
+              
+              <!-- 3 Component Cards -->
+              <div class="space-y-3">
+                
+                <!-- 1. Interactive Visual Slides -->
+                <div class="flex items-start gap-3.5 p-3.5 rounded-2xl bg-blue-50/50 dark:bg-slate-800/60 border border-blue-100 dark:border-slate-700 hover:border-blue-300 transition-colors">
+                  <div class="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center shrink-0 shadow-2xs">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <div class="flex items-center justify-between">
+                      <h4 class="font-bold text-slate-900 dark:text-white text-sm">Interactive Slide Presentation</h4>
+                      <span class="text-[10px] font-bold text-blue-700 dark:text-blue-300 bg-blue-100 dark:bg-blue-900/60 px-2 py-0.5 rounded-md">PPTX & PDF</span>
+                    </div>
+                    <p class="text-sm text-slate-700 dark:text-slate-300 mt-1 leading-relaxed">
+                      High-impact visuals, vocabulary flashcards, and step-by-step prompts ready for screen sharing.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- 2. Full Teacher Guide & Script -->
+                <div class="flex items-start gap-3.5 p-3.5 rounded-2xl bg-amber-50/50 dark:bg-slate-800/60 border border-amber-100 dark:border-slate-700 hover:border-amber-300 transition-colors">
+                  <div class="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center shrink-0 shadow-2xs">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                    </svg>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <div class="flex items-center justify-between">
+                      <h4 class="font-bold text-slate-900 dark:text-white text-sm">Step-by-Step Teacher Script</h4>
+                      <span class="text-[10px] font-bold text-amber-700 dark:text-amber-300 bg-amber-100 dark:bg-amber-950/60 px-2 py-0.5 rounded-md">Zero Prep</span>
+                    </div>
+                    <p class="text-sm text-slate-700 dark:text-slate-300 mt-1 leading-relaxed">
+                      Precise elicitation questions, timing breakdown, concept check questions, and answer keys.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- 3. Printable Handouts & Homework -->
+                <div class="flex items-start gap-3.5 p-3.5 rounded-2xl bg-emerald-50/50 dark:bg-slate-800/60 border border-emerald-100 dark:border-slate-700 hover:border-emerald-300 transition-colors">
+                  <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0 shadow-2xs">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <div class="flex items-center justify-between">
+                      <h4 class="font-bold text-slate-900 dark:text-white text-sm">Student Worksheets & Handouts</h4>
+                      <span class="text-[10px] font-bold text-emerald-700 dark:text-emerald-300 bg-emerald-100 dark:bg-emerald-950/60 px-2 py-0.5 rounded-md">Print-Ready</span>
+                    </div>
+                    <p class="text-sm text-slate-700 dark:text-slate-300 mt-1 leading-relaxed">
+                      Classroom pair-work activities, grammar drills, homework sheets, and self-study reviews.
+                    </p>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Button & Small Message at Bottom of Right Grid -->
+              <div class="pt-2">
+                <a href="#free-sample" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-full shadow-md hover:shadow-lg transition-all">
+                  <span>Explore This Lesson Free</span>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </a>
+                
+                <div class="flex items-center gap-4 text-xs text-slate-500 dark:text-slate-400 font-medium mt-3">
+                  <span class="flex items-center gap-1">
+                    <svg class="w-3.5 h-3.5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    Full A1 Lesson Pack
+                  </span>
+                  <span class="flex items-center gap-1">
+                    <svg class="w-3.5 h-3.5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    No Credit Card Required
+                  </span>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- Bottom Container: 4 Icons with Titles and Text in a Container with Separators -->
+          <div class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-6 sm:p-8 shadow-sm grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative divide-y sm:divide-y-0 sm:divide-x divide-slate-100 dark:divide-slate-800 max-w-6xl mx-auto">
+            
+            <!-- Item 1 -->
+            <div class="flex flex-col items-center text-center space-y-3 sm:pr-4">
+              <div class="w-14 h-14 rounded-2xl bg-blue-600 text-white flex items-center justify-center shadow-md">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-bold text-slate-900 dark:text-white text-base">Interactive Slides</h4>
+                <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mt-1">
+                  High-impact visuals, flashcards, and step-by-step prompts ready for screen sharing.
+                </p>
+              </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="flex flex-col items-center text-center space-y-3 pt-6 sm:pt-0 sm:px-4">
+              <div class="w-14 h-14 rounded-2xl bg-amber-500 text-white flex items-center justify-center shadow-md">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-bold text-slate-900 dark:text-white text-base">Teacher Scripts</h4>
+                <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mt-1">
+                  Precise elicitation questions, timing breakdown, concept check questions, and answer keys.
+                </p>
+              </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="flex flex-col items-center text-center space-y-3 pt-6 sm:pt-0 sm:px-4">
+              <div class="w-14 h-14 rounded-2xl bg-purple-600 text-white flex items-center justify-center shadow-md">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-bold text-slate-900 dark:text-white text-base">Audio & Video</h4>
+                <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mt-1">
+                  Conversational clips recorded with native English speakers for real-world listening practice.
+                </p>
+              </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="flex flex-col items-center text-center space-y-3 pt-6 sm:pt-0 sm:pl-4">
+              <div class="w-14 h-14 rounded-2xl bg-emerald-600 text-white flex items-center justify-center shadow-md">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-bold text-slate-900 dark:text-white text-base">Print Worksheets</h4>
+                <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mt-1">
+                  Classroom pair-work activities, grammar drills, homework sheets, and self-study reviews.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <section class="cta-section relative pt-0 pb-0 bg-gradient-to-b from-[#eaf2fd] via-[#f5f9fe] to-white dark:from-[#0b0f19] dark:via-[#0e172a] dark:to-[#060913] overflow-hidden">
         <!-- Top Organic Smooth Wave Divider Transitioning into CTA -->
         <div class="w-full overflow-hidden leading-none relative z-10 -mt-px pointer-events-none select-none">
           <svg 
-            class="relative block w-full h-8 sm:h-12 md:h-14" 
+            class="cta-wave-top relative block w-full h-8 sm:h-12 md:h-14" 
             viewBox="0 0 1440 90" 
             fill="none" 
             xmlns="http://www.w3.org/2000/svg"
@@ -1190,12 +1493,14 @@
           >
             <!-- Layer 1: Soft sky wave behind -->
             <path 
+              class="cta-top-wave-1 transition-colors"
               d="M0,0 L1440,0 L1440,55 C1220,80 960,30 720,65 C480,95 240,40 0,65 Z" 
               fill="#bfdbfe" 
               fill-opacity="0.45"
             />
             <!-- Layer 2: White organic wave crest flowing from previous section into CTA -->
             <path 
+              class="cta-top-wave-2 transition-colors"
               d="M0,0 L1440,0 L1440,35 C1200,65 940,15 700,50 C440,80 200,20 0,45 Z" 
               fill="#ffffff"
             />
@@ -1204,26 +1509,27 @@
 
         <!-- CTA ambient background grid, glow & sparkles -->
         <div class="absolute inset-0 pointer-events-none overflow-hidden select-none z-0">
-          <div class="absolute inset-0 bg-grid-dense opacity-35"></div>
-          <div class="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-64 bg-blue-400/12 rounded-full blur-3xl animate-ambient-pulse"></div>
-          <div class="absolute top-1/2 right-1/4 -translate-y-1/2 w-80 h-64 bg-indigo-400/10 rounded-full blur-3xl"></div>
-          <div class="absolute top-6 left-[8%] w-10 h-10 rounded-full border border-blue-200/50 animate-ambient-float"></div>
+          <div class="absolute inset-0 bg-grid-dense opacity-35 dark:opacity-20"></div>
+          <div class="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-64 bg-blue-400/12 dark:bg-blue-500/10 rounded-full blur-3xl animate-ambient-pulse"></div>
+          <div class="absolute top-1/2 right-1/4 -translate-y-1/2 w-80 h-64 bg-indigo-400/10 dark:bg-indigo-500/10 rounded-full blur-3xl"></div>
+          <div class="absolute top-6 left-[8%] w-10 h-10 rounded-full border border-blue-200/50 dark:border-blue-400/30 animate-ambient-float"></div>
           <div class="absolute top-8 right-[10%] text-amber-400/70 animate-ambient-float-reverse">
             <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z"/></svg>
           </div>
-          <div class="absolute top-12 left-[20%] text-blue-300/40 font-mono text-lg">+</div>
-          <div class="absolute top-14 right-[25%] text-slate-300 font-mono text-lg">+</div>
+          <div class="absolute top-12 left-[20%] text-blue-300/40 dark:text-blue-400/30 font-mono text-lg">+</div>
+          <div class="absolute top-14 right-[25%] text-slate-300 dark:text-slate-600 font-mono text-lg">+</div>
         </div>
-        <!-- Main CTA Content (Shorter vertical profile) -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pb-6 sm:pb-8">
+
+        <!-- Main CTA Content (Generous vertical padding for centered balance) -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-12 sm:pt-16 lg:pt-20 pb-12 sm:pb-16 lg:pb-20">
           <div class="flex flex-col lg:flex-row items-center justify-between gap-6 relative max-w-5xl mx-auto">
             
             <!-- Left Headline & Subtitle -->
             <div class="text-center lg:text-left space-y-2 max-w-xl">
-              <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight leading-tight">
+              <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
                 Ready to make a bigger impact with English education?
               </h2>
-              <p class="text-sm sm:text-base text-slate-600 font-medium">
+              <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 font-medium">
                 Join thousands of teachers and schools using Remtoo.
               </p>
             </div>
@@ -1232,20 +1538,20 @@
             <div class="flex flex-col items-center lg:items-end text-center lg:text-right shrink-0 relative">
               <a 
                 href="#built-for-schools" 
-                class="px-7 py-3 text-xs sm:text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-full shadow-md hover:shadow-lg transition-all inline-flex items-center gap-2 group"
+                class="px-7 py-3 text-xs sm:text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-full shadow-md hover:shadow-lg transition-all inline-flex items-center gap-2 group cursor-pointer"
               >
                 <span>Book a 15-Minute Demo</span>
                 <span class="group-hover:translate-x-0.5 transition-transform">→</span>
               </a>
-              <p class="text-xs sm:text-sm text-slate-500 mt-1.5 font-medium">
+              <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1.5 font-medium">
                 No commitment. Just a better way to teach.
               </p>
 
               <!-- Handwritten Accent: "Better Teachers. Brighter Futures." -->
-              <div class="mt-2.5 font-handwriting text-xl sm:text-2xl text-blue-600 -rotate-3 select-none leading-tight">
+              <div class="mt-2.5 font-handwriting text-xl sm:text-2xl text-blue-600 dark:text-blue-400 -rotate-3 select-none leading-tight">
                 <div>Better Teachers.</div>
                 <div>Brighter Futures.</div>
-                <div class="w-14 h-0.5 bg-blue-400/50 rounded-full mx-auto lg:ml-auto mt-0.5 rotate-2"></div>
+                <div class="w-14 h-0.5 bg-blue-400/50 dark:bg-blue-400/40 rounded-full mx-auto lg:ml-auto mt-0.5 rotate-2"></div>
               </div>
             </div>
 
@@ -1255,7 +1561,7 @@
         <!-- Layered Organic Waves Leading into Navy Footer (Compact Height) -->
         <div class="w-full overflow-hidden leading-none relative z-10">
           <svg 
-            class="relative block w-full h-10 sm:h-16 md:h-20" 
+            class="cta-wave-bottom relative block w-full h-10 sm:h-16 md:h-20" 
             viewBox="0 0 1440 180" 
             fill="none" 
             xmlns="http://www.w3.org/2000/svg"
@@ -1263,31 +1569,38 @@
           >
             <!-- Layer 1: Soft Sky/Ice Blue wave behind -->
             <path 
+              class="cta-bot-wave-1 transition-colors"
               d="M0,90 C320,160 540,20 880,100 C1160,160 1340,80 1440,110 L1440,180 L0,180 Z" 
               fill="#dbeafe" 
               fill-opacity="0.6"
             />
             <!-- Layer 2: Medium Soft Blue wave middle -->
             <path 
+              class="cta-bot-wave-2 transition-colors"
               d="M0,120 C280,60 620,160 960,110 C1200,80 1360,130 1440,140 L1440,180 L0,180 Z" 
               fill="#bfdbfe" 
               fill-opacity="0.8"
             />
             <!-- Layer 3: Solid Dark Navy Wave matching footer (#0b1329) -->
             <path 
+              class="cta-bot-wave-3 transition-colors"
               d="M0,140 C360,110 720,180 1080,130 C1260,110 1380,150 1440,160 L1440,180 L0,180 Z" 
               fill="#0b1329"
             />
           </svg>
         </div>
       </section>
+
+      
+
+
       </div>
 
       <!-- ========================================================================= -->
       <!-- PAGE 3: WHAT INCLUDED -->
       <!-- ========================================================================= -->
       <div id="view-whats-included" class="page-view hidden-view">
-        <section id="section-whats-included" class="py-20 lg:py-24 bg-gradient-to-b from-[#eef6ff]/80 via-[#f8fbfe]/70 to-white relative overflow-hidden border-t border-slate-100">
+        <section id="section-whats-included" class="py-20 lg:py-24 bg-gradient-to-b from-[#eef6ff]/80 via-[#f8fbfe]/70 to-white dark:from-[#0b0f19] dark:via-[#0e1628] dark:to-[#0b0f19] relative overflow-hidden border-t border-slate-100 dark:border-slate-800">
         <!-- Background subtle ambiance, grid lines & floating shapes -->
         <div class="absolute inset-0 pointer-events-none overflow-hidden select-none z-0">
           <!-- Architectural Grid Lines Pattern -->
@@ -1334,7 +1647,7 @@
           
           <!-- Section Header (Matches What's Included.jpeg) -->
           <div class="text-center max-w-3xl mx-auto mb-14 space-y-3">
-            <span class="inline-block px-4 py-1 text-xs font-extrabold tracking-wider text-blue-700 bg-blue-100/70 rounded-full uppercase">
+            <span class="section-pill inline-block px-4 py-1.5 text-xs font-black tracking-widest text-[#2563eb] bg-[#e1effe] rounded-full uppercase shadow-xs">
               WHAT YOU GET
             </span>
             <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">
@@ -1797,242 +2110,14 @@
 
         </div>
       </section>
-        <section id="lesson-preview" class="py-20 bg-gradient-to-b from-white via-[#f8fbfe]/50 to-white border-b border-slate-100 relative overflow-hidden">
-        <div class="absolute inset-0 pointer-events-none bg-grid-dense opacity-30 z-0"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <!-- Section Header Matching Design -->
-          <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
-            <span class="inline-flex items-center gap-1.5 px-4 py-1 text-xs font-extrabold tracking-wider text-blue-700 bg-blue-100/70 rounded-full uppercase">
-              <svg class="w-3.5 h-3.5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-              </svg>
-              SEE A REAL LESSON
-            </span>
-            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">
-              See A Real Lesson
-            </h2>
-            <p class="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto leading-relaxed">
-              Explore how each 60-minute session is carefully structured for maximum student engagement and zero prep for teachers.
-            </p>
-          </div>
-
-          <!-- 2-Column Section Layout: Left Mockup with slim border, Right Lesson Structure Breakdown -->
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center max-w-6xl mx-auto">
-            
-            <!-- LEFT COLUMN: Lesson Screen Mockup with Slim Border (Smaller Border as requested) -->
-            <div class="lg:col-span-7">
-              <div class="relative bg-white rounded-2xl border-2 border-slate-200 shadow-xl overflow-hidden group">
-                
-                <!-- Mockup Slim Window Header Bar -->
-                <div class="flex items-center justify-between px-4 py-2.5 bg-slate-900 border-b border-slate-800 text-xs text-slate-300">
-                  <div class="flex items-center gap-2">
-                    <span class="w-2.5 h-2.5 rounded-full bg-rose-500 inline-block"></span>
-                    <span class="w-2.5 h-2.5 rounded-full bg-amber-400 inline-block"></span>
-                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span>
-                    <span class="ml-2 font-mono text-[11px] text-slate-300 font-medium">Remtoo Classroom · A1 · Lesson 1</span>
-                  </div>
-                  <div class="flex items-center gap-2">
-                    <span class="px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-300 text-[10px] font-bold uppercase tracking-wider">Live Preview</span>
-                    <div class="flex items-center gap-1 text-slate-400 text-[11px]">
-                      <svg class="w-3.5 h-3.5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                      <span>60 min</span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Slide Mockup Body with Interactive Slide Visual -->
-                <div class="relative aspect-video bg-slate-950 overflow-hidden">
-                  <img 
-                    id="lesson-preview-img"
-                    src="/src/assets/images/lesson_slide_screen_hd_1791655336308.jpg" 
-                    alt="Remtoo Lesson 1: Meet and Greet slide screen preview"
-                    class="w-full h-full object-cover transition-all duration-300"
-                  />
-
-                  <!-- Floating Play Button & Audio Overlay Indicator -->
-                  <div class="absolute inset-0 bg-slate-950/20 hover:bg-slate-950/10 transition-colors flex items-center justify-center pointer-events-none">
-                    <div class="w-14 h-14 rounded-full bg-blue-600/90 text-white flex items-center justify-center shadow-lg transform group-hover:scale-105 transition-transform">
-                      <svg class="w-6 h-6 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
-                    </div>
-                  </div>
-
-                  <!-- Bottom Audio Player Controls Bar -->
-                  <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-950/90 via-slate-950/60 to-transparent p-3 pt-6 flex items-center justify-between text-white text-xs">
-                    <div class="flex items-center gap-2.5">
-                      <button type="button" class="w-7 h-7 rounded-full bg-white text-slate-900 flex items-center justify-center hover:bg-blue-50 transition-colors shadow">
-                        <svg class="w-3.5 h-3.5 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
-                      </button>
-                      <span class="font-mono text-[11px] text-slate-200">02:14 / 08:30</span>
-                      <div class="hidden sm:flex items-center gap-1 text-slate-300 text-[11px]">
-                        <span class="w-1 h-3 bg-blue-400 rounded-full animate-pulse"></span>
-                        <span class="w-1 h-4 bg-blue-400 rounded-full animate-pulse"></span>
-                        <span class="w-1 h-2 bg-blue-400 rounded-full animate-pulse"></span>
-                        <span class="w-1 h-5 bg-blue-400 rounded-full animate-pulse"></span>
-                        <span class="ml-1 text-[10px] text-slate-300">Native Audio</span>
-                      </div>
-                    </div>
-                    <div class="flex items-center gap-2 text-slate-300 text-[11px]">
-                      <span class="px-2 py-0.5 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">Slide 1 of 8</span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Bottom Slide Quick Switcher Tabs -->
-                <div class="bg-slate-50 p-2.5 border-t border-slate-200">
-                  <div class="flex items-center justify-between gap-1 overflow-x-auto text-[11px] font-semibold text-slate-600 pb-0.5">
-                    <button type="button" onclick="switchPreviewSlide(0)" class="preview-step-btn px-2.5 py-1.5 rounded-lg bg-blue-600 text-white font-bold whitespace-nowrap shadow-2xs">
-                      1. Warm-Up & Intro
-                    </button>
-                    <button type="button" onclick="switchPreviewSlide(1)" class="preview-step-btn px-2.5 py-1.5 rounded-lg hover:bg-slate-200/80 text-slate-700 whitespace-nowrap transition-colors">
-                      2. Vocabulary Cards
-                    </button>
-                    <button type="button" onclick="switchPreviewSlide(2)" class="preview-step-btn px-2.5 py-1.5 rounded-lg hover:bg-slate-200/80 text-slate-700 whitespace-nowrap transition-colors">
-                      3. Video Dialogue
-                    </button>
-                    <button type="button" onclick="switchPreviewSlide(3)" class="preview-step-btn px-2.5 py-1.5 rounded-lg hover:bg-slate-200/80 text-slate-700 whitespace-nowrap transition-colors">
-                      4. Pair Speaking
-                    </button>
-                  </div>
-                </div>
-
-              </div>
-
-              <!-- Quick sub-caption below mockup -->
-              <p class="text-center text-xs text-slate-500 mt-3 flex items-center justify-center gap-1.5">
-                <svg class="w-3.5 h-3.5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                <span>Interactive screen tested on Zoom, Google Meet, Teams, and classroom interactive whiteboards.</span>
-              </p>
-            </div>
-
-
-            <!-- RIGHT COLUMN: Detailed Lesson Components & Value breakdown (The Right Part requested) -->
-            <div class="lg:col-span-5 flex flex-col justify-center space-y-6">
-              
-              <!-- Subheading & Intro -->
-              <div class="space-y-2">
-                <span class="inline-block px-2.5 py-0.5 text-[11px] font-extrabold uppercase tracking-wider text-blue-700 bg-blue-50 border border-blue-200/60 rounded-md">
-                  WHAT EVERY LESSON INCLUDES
-                </span>
-                <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-tight">
-                  Everything You Need to Teach With Zero Preparation
-                </h3>
-                <p class="text-sm sm:text-base text-slate-700 leading-relaxed">
-              Every 60-minute lesson is pre-built by senior curriculum designers. Open the file and teach immediately without spending hours prepping.
-                </p>
-              </div>
-
-              <!-- 4 Structured Component Cards -->
-              <div class="space-y-3">
-                
-                <!-- 1. Interactive Visual Slides -->
-                <div class="flex items-start gap-3.5 p-3.5 rounded-2xl bg-blue-50/50 border border-blue-100 hover:border-blue-300 transition-colors">
-                  <div class="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center shrink-0 shadow-2xs">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                    </svg>
-                  </div>
-                  <div class="flex-1 min-w-0">
-                    <div class="flex items-center justify-between">
-                      <h4 class="font-bold text-slate-900 text-sm">Interactive Slide Presentation</h4>
-                      <span class="text-[10px] font-bold text-blue-700 bg-blue-100 px-2 py-0.5 rounded-md">PPTX & PDF</span>
-                    </div>
-                    <p class="text-sm text-slate-700 mt-1 leading-relaxed">
-                      High-impact visuals, vocabulary flashcards, and step-by-step prompts ready for screen sharing.
-                    </p>
-                  </div>
-                </div>
-
-                <!-- 2. Full Teacher Guide & Script -->
-                <div class="flex items-start gap-3.5 p-3.5 rounded-2xl bg-amber-50/50 border border-amber-100 hover:border-amber-300 transition-colors">
-                  <div class="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center shrink-0 shadow-2xs">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-                    </svg>
-                  </div>
-                  <div class="flex-1 min-w-0">
-                    <div class="flex items-center justify-between">
-                      <h4 class="font-bold text-slate-900 text-sm">Step-by-Step Teacher Script</h4>
-                      <span class="text-[10px] font-bold text-amber-700 bg-amber-100 px-2 py-0.5 rounded-md">Zero Prep</span>
-                    </div>
-                    <p class="text-sm text-slate-700 mt-1 leading-relaxed">
-                      Precise elicitation questions, timing breakdown, concept check questions, and answer keys.
-                    </p>
-                  </div>
-                </div>
-
-                <!-- 3. Native Audio & Video Dialogue -->
-                <div class="flex items-start gap-3.5 p-3.5 rounded-2xl bg-purple-50/50 border border-purple-100 hover:border-purple-300 transition-colors">
-                  <div class="w-10 h-10 rounded-xl bg-purple-600 text-white flex items-center justify-center shrink-0 shadow-2xs">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
-                  </div>
-                  <div class="flex-1 min-w-0">
-                    <div class="flex items-center justify-between">
-                      <h4 class="font-bold text-slate-900 text-sm">Authentic Video & Audio Dialogues</h4>
-                      <span class="text-[10px] font-bold text-purple-700 bg-purple-100 px-2 py-0.5 rounded-md">MP4 & MP3</span>
-                    </div>
-                    <p class="text-sm text-slate-700 mt-1 leading-relaxed">
-                      Conversational clips recorded with native English speakers for real-world listening practice.
-                    </p>
-                  </div>
-                </div>
-
-                <!-- 4. Printable Handouts & Homework -->
-                <div class="flex items-start gap-3.5 p-3.5 rounded-2xl bg-emerald-50/50 border border-emerald-100 hover:border-emerald-300 transition-colors">
-                  <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0 shadow-2xs">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                    </svg>
-                  </div>
-                  <div class="flex-1 min-w-0">
-                    <div class="flex items-center justify-between">
-                      <h4 class="font-bold text-slate-900 text-sm">Student Worksheets & Handouts</h4>
-                      <span class="text-[10px] font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-md">Print-Ready</span>
-                    </div>
-                    <p class="text-sm text-slate-700 mt-1 leading-relaxed">
-                      Classroom pair-work activities, grammar drills, homework sheets, and self-study reviews.
-                    </p>
-                  </div>
-                </div>
-
-              </div>
-
-              <!-- Action Card with Direct Link to Free Sample -->
-              <div class="pt-2">
-                <a href="#free-sample" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-full shadow-md hover:shadow-lg transition-all">
-                  <span>Explore This Lesson Free</span>
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                </a>
-                
-                <div class="flex items-center gap-4 text-xs text-slate-500 font-medium mt-3">
-                  <span class="flex items-center gap-1">
-                    <svg class="w-3.5 h-3.5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                    Full A1 Lesson Pack
-                  </span>
-                  <span class="flex items-center gap-1">
-                    <svg class="w-3.5 h-3.5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                    No Credit Card Required
-                  </span>
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-      </section>
-        <section id="how-it-works" class="py-20 bg-gradient-to-b from-[#f8fbfe] via-white to-white border-t border-slate-100 relative overflow-hidden">
+        
+        <section id="how-it-works" class="py-20 bg-gradient-to-b from-[#f8fbfe] via-white to-white dark:from-[#0b0f19] dark:via-[#0e1628] dark:to-[#0b0f19] border-t border-slate-100 dark:border-slate-800 relative overflow-hidden">
         <div class="absolute inset-0 pointer-events-none bg-grid-blueprint opacity-40 z-0"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <!-- Header (Matching how it work.jpeg) -->
           <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
-            <span class="inline-block px-4 py-1 text-xs font-extrabold tracking-wider text-blue-700 bg-blue-100/70 rounded-full uppercase">
+            <span class="section-pill inline-block px-4 py-1.5 text-xs font-black tracking-widest text-[#2563eb] bg-[#e1effe] rounded-full uppercase shadow-xs">
               HOW IT WORKS
             </span>
             <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">
@@ -2131,7 +2216,7 @@
               </div>
 
               <!-- Connecting Arrow 1 (Desktop: positioned in between Card 1 and Card 2) -->
-              <div class="hidden lg:flex items-center justify-center absolute -right-4.5 top-1/2 -translate-y-1/2 z-20 text-blue-600 bg-white rounded-full p-1 shadow-sm border border-slate-200">
+              <div class="hidden lg:flex items-center justify-center absolute -right-4.5 top-1/2 -translate-y-1/2 z-20 text-blue-600 dark:text-blue-400 bg-white dark:bg-slate-800 rounded-full p-1 shadow-sm border border-slate-200 dark:border-slate-700">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
               </div>
             </div>
@@ -2252,7 +2337,7 @@
               </div>
 
               <!-- Connecting Arrow 2 (Desktop: positioned in between Card 2 and Card 3) -->
-              <div class="hidden lg:flex items-center justify-center absolute -right-4.5 top-1/2 -translate-y-1/2 z-20 text-blue-600 bg-white rounded-full p-1 shadow-sm border border-slate-200">
+              <div class="hidden lg:flex items-center justify-center absolute -right-4.5 top-1/2 -translate-y-1/2 z-20 text-blue-600 dark:text-blue-400 bg-white dark:bg-slate-800 rounded-full p-1 shadow-sm border border-slate-200 dark:border-slate-700">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
               </div>
             </div>
@@ -2281,7 +2366,7 @@
                 />
 
                 <!-- Floating Glass Card: Engaged students. Better results. -->
-                <div class="absolute bottom-3 right-3 bg-white/95 backdrop-blur-md rounded-xl p-2 shadow-lg border border-white flex items-center gap-2">
+                <div class="absolute bottom-3 right-3 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md rounded-xl p-2 shadow-lg border border-white dark:border-slate-700 flex items-center gap-2">
                   <span class="w-6 h-6 rounded-md bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
                   </span>
@@ -2342,11 +2427,11 @@
       </section>
       
 
-        <section class="relative pt-0 pb-0 bg-gradient-to-b from-[#eaf2fd] via-[#f5f9fe] to-white overflow-hidden">
+        <section class="cta-section relative pt-0 pb-0 bg-gradient-to-b from-[#eaf2fd] via-[#f5f9fe] to-white dark:from-[#0b0f19] dark:via-[#0e172a] dark:to-[#060913] overflow-hidden">
         <!-- Top Organic Smooth Wave Divider Transitioning into CTA -->
         <div class="w-full overflow-hidden leading-none relative z-10 -mt-px pointer-events-none select-none">
           <svg 
-            class="relative block w-full h-8 sm:h-12 md:h-14" 
+            class="cta-wave-top relative block w-full h-8 sm:h-12 md:h-14" 
             viewBox="0 0 1440 90" 
             fill="none" 
             xmlns="http://www.w3.org/2000/svg"
@@ -2354,12 +2439,14 @@
           >
             <!-- Layer 1: Soft sky wave behind -->
             <path 
+              class="cta-top-wave-1 transition-colors"
               d="M0,0 L1440,0 L1440,55 C1220,80 960,30 720,65 C480,95 240,40 0,65 Z" 
               fill="#bfdbfe" 
               fill-opacity="0.45"
             />
             <!-- Layer 2: White organic wave crest flowing from previous section into CTA -->
             <path 
+              class="cta-top-wave-2 transition-colors"
               d="M0,0 L1440,0 L1440,35 C1200,65 940,15 700,50 C440,80 200,20 0,45 Z" 
               fill="#ffffff"
             />
@@ -2368,26 +2455,27 @@
 
         <!-- CTA ambient background grid, glow & sparkles -->
         <div class="absolute inset-0 pointer-events-none overflow-hidden select-none z-0">
-          <div class="absolute inset-0 bg-grid-dense opacity-35"></div>
-          <div class="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-64 bg-blue-400/12 rounded-full blur-3xl animate-ambient-pulse"></div>
-          <div class="absolute top-1/2 right-1/4 -translate-y-1/2 w-80 h-64 bg-indigo-400/10 rounded-full blur-3xl"></div>
-          <div class="absolute top-6 left-[8%] w-10 h-10 rounded-full border border-blue-200/50 animate-ambient-float"></div>
+          <div class="absolute inset-0 bg-grid-dense opacity-35 dark:opacity-20"></div>
+          <div class="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-64 bg-blue-400/12 dark:bg-blue-500/10 rounded-full blur-3xl animate-ambient-pulse"></div>
+          <div class="absolute top-1/2 right-1/4 -translate-y-1/2 w-80 h-64 bg-indigo-400/10 dark:bg-indigo-500/10 rounded-full blur-3xl"></div>
+          <div class="absolute top-6 left-[8%] w-10 h-10 rounded-full border border-blue-200/50 dark:border-blue-400/30 animate-ambient-float"></div>
           <div class="absolute top-8 right-[10%] text-amber-400/70 animate-ambient-float-reverse">
             <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z"/></svg>
           </div>
-          <div class="absolute top-12 left-[20%] text-blue-300/40 font-mono text-lg">+</div>
-          <div class="absolute top-14 right-[25%] text-slate-300 font-mono text-lg">+</div>
+          <div class="absolute top-12 left-[20%] text-blue-300/40 dark:text-blue-400/30 font-mono text-lg">+</div>
+          <div class="absolute top-14 right-[25%] text-slate-300 dark:text-slate-600 font-mono text-lg">+</div>
         </div>
-        <!-- Main CTA Content (Shorter vertical profile) -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pb-6 sm:pb-8">
+
+        <!-- Main CTA Content (Generous vertical padding for centered balance) -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-12 sm:pt-16 lg:pt-20 pb-12 sm:pb-16 lg:pb-20">
           <div class="flex flex-col lg:flex-row items-center justify-between gap-6 relative max-w-5xl mx-auto">
             
             <!-- Left Headline & Subtitle -->
             <div class="text-center lg:text-left space-y-2 max-w-xl">
-              <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight leading-tight">
+              <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
                 Ready to make a bigger impact with English education?
               </h2>
-              <p class="text-sm sm:text-base text-slate-600 font-medium">
+              <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 font-medium">
                 Join thousands of teachers and schools using Remtoo.
               </p>
             </div>
@@ -2396,20 +2484,20 @@
             <div class="flex flex-col items-center lg:items-end text-center lg:text-right shrink-0 relative">
               <a 
                 href="#built-for-schools" 
-                class="px-7 py-3 text-xs sm:text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-full shadow-md hover:shadow-lg transition-all inline-flex items-center gap-2 group"
+                class="px-7 py-3 text-xs sm:text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-full shadow-md hover:shadow-lg transition-all inline-flex items-center gap-2 group cursor-pointer"
               >
                 <span>Book a 15-Minute Demo</span>
                 <span class="group-hover:translate-x-0.5 transition-transform">→</span>
               </a>
-              <p class="text-xs sm:text-sm text-slate-500 mt-1.5 font-medium">
+              <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1.5 font-medium">
                 No commitment. Just a better way to teach.
               </p>
 
               <!-- Handwritten Accent: "Better Teachers. Brighter Futures." -->
-              <div class="mt-2.5 font-handwriting text-xl sm:text-2xl text-blue-600 -rotate-3 select-none leading-tight">
+              <div class="mt-2.5 font-handwriting text-xl sm:text-2xl text-blue-600 dark:text-blue-400 -rotate-3 select-none leading-tight">
                 <div>Better Teachers.</div>
                 <div>Brighter Futures.</div>
-                <div class="w-14 h-0.5 bg-blue-400/50 rounded-full mx-auto lg:ml-auto mt-0.5 rotate-2"></div>
+                <div class="w-14 h-0.5 bg-blue-400/50 dark:bg-blue-400/40 rounded-full mx-auto lg:ml-auto mt-0.5 rotate-2"></div>
               </div>
             </div>
 
@@ -2419,7 +2507,7 @@
         <!-- Layered Organic Waves Leading into Navy Footer (Compact Height) -->
         <div class="w-full overflow-hidden leading-none relative z-10">
           <svg 
-            class="relative block w-full h-10 sm:h-16 md:h-20" 
+            class="cta-wave-bottom relative block w-full h-10 sm:h-16 md:h-20" 
             viewBox="0 0 1440 180" 
             fill="none" 
             xmlns="http://www.w3.org/2000/svg"
@@ -2427,18 +2515,21 @@
           >
             <!-- Layer 1: Soft Sky/Ice Blue wave behind -->
             <path 
+              class="cta-bot-wave-1 transition-colors"
               d="M0,90 C320,160 540,20 880,100 C1160,160 1340,80 1440,110 L1440,180 L0,180 Z" 
               fill="#dbeafe" 
               fill-opacity="0.6"
             />
             <!-- Layer 2: Medium Soft Blue wave middle -->
             <path 
+              class="cta-bot-wave-2 transition-colors"
               d="M0,120 C280,60 620,160 960,110 C1200,80 1360,130 1440,140 L1440,180 L0,180 Z" 
               fill="#bfdbfe" 
               fill-opacity="0.8"
             />
             <!-- Layer 3: Solid Dark Navy Wave matching footer (#0b1329) -->
             <path 
+              class="cta-bot-wave-3 transition-colors"
               d="M0,140 C360,110 720,180 1080,130 C1260,110 1380,150 1440,160 L1440,180 L0,180 Z" 
               fill="#0b1329"
             />
@@ -2451,7 +2542,7 @@
       <!-- PAGE 4: FOR SCHOOLS -->
       <!-- ========================================================================= -->
       <div id="view-built-for-schools" class="page-view hidden-view">
-        <section id="section-built-for-schools" class="py-20 lg:py-24 bg-gradient-to-b from-[#eef6ff]/80 via-[#f8fbfe]/70 to-white border-y border-slate-100 relative overflow-hidden">
+        <section id="section-built-for-schools" class="py-20 lg:py-24 bg-gradient-to-b from-[#eef6ff]/80 via-[#f8fbfe]/70 to-white dark:from-[#0b0f19] dark:via-[#0e1628] dark:to-[#0b0f19] border-y border-slate-100 dark:border-slate-800 relative overflow-hidden">
         <!-- Background subtle ambiance, grid lines & floating shapes -->
         <div class="absolute inset-0 pointer-events-none overflow-hidden select-none z-0">
           <!-- Architectural Grid Lines Pattern -->
@@ -2498,7 +2589,7 @@
           
           <!-- Section Header Matching Clean Architectural Style -->
           <div class="text-center max-w-3xl mx-auto mb-14 space-y-3 relative">
-            <span class="inline-flex items-center gap-1.5 px-4 py-1.5 text-xs font-black tracking-widest text-[#2563eb] bg-[#e1effe] rounded-full uppercase">
+            <span class="section-pill inline-flex items-center gap-1.5 px-4 py-1.5 text-xs font-black tracking-widest text-[#2563eb] bg-[#e1effe] rounded-full uppercase shadow-xs">
               <span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
               BUILT FOR SCHOOLS
             </span>
@@ -2586,7 +2677,7 @@
             </div>
           </div>
 
-          <!-- 6 Feature Cards in One Row (Subtle, thin borders, soft tint) -->          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 mb-10 max-w-7xl mx-auto">                        <!-- 1. Consistent Teaching -->            <div class="p-4 sm:p-5 rounded-2xl bg-blue-50/30 border border-blue-200/60 shadow-sm hover:shadow transition-all text-center flex flex-col items-center">              <div class="w-12 h-12 rounded-full bg-blue-500 text-white flex items-center justify-center mb-3 shrink-0 shadow-sm">                <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 3s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>              </div>              <h3 class="font-extrabold text-slate-900 text-sm leading-tight mb-2">Consistent<br>Teaching</h3>              <p class="text-xs sm:text-sm text-slate-700 font-medium leading-relaxed">                Every teacher follows the same structured curriculum.              </p>            </div>            <!-- 2. Faster Teacher Onboarding -->            <div class="p-4 sm:p-5 rounded-2xl bg-emerald-50/30 border border-emerald-200/60 shadow-sm hover:shadow transition-all text-center flex flex-col items-center">              <div class="w-12 h-12 rounded-full bg-emerald-500 text-white flex items-center justify-center mb-3 shrink-0 shadow-sm">                <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg>              </div>              <h3 class="font-extrabold text-slate-900 text-sm leading-tight mb-2">Faster Teacher<br>Onboarding</h3>              <p class="text-xs sm:text-sm text-slate-700 font-medium leading-relaxed">                New teachers don't need weeks to prepare materials.              </p>            </div>            <!-- 3. Less Preparation -->            <div class="p-4 sm:p-5 rounded-2xl bg-rose-50/30 border border-rose-200/60 shadow-sm hover:shadow transition-all text-center flex flex-col items-center">              <div class="w-12 h-12 rounded-full bg-rose-500 text-white flex items-center justify-center mb-3 shrink-0 shadow-sm">                <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>              </div>              <h3 class="font-extrabold text-slate-900 text-sm leading-tight mb-2">Less<br>Preparation</h3>              <p class="text-xs sm:text-sm text-slate-700 font-medium leading-relaxed">                Your teachers spend more time teaching and less time creating lessons.              </p>            </div>            <!-- 4. Easy to Scale -->            <div class="p-4 sm:p-5 rounded-2xl bg-purple-50/30 border border-purple-200/60 shadow-sm hover:shadow transition-all text-center flex flex-col items-center">              <div class="w-12 h-12 rounded-full bg-purple-600 text-white flex items-center justify-center mb-3 shrink-0 shadow-sm">                <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M5 9.2h3V19H5zM10.6 5h2.8v14h-2.8zm5.6 8H19v6h-2.8z"/></svg>              </div>              <h3 class="font-extrabold text-slate-900 text-sm leading-tight mb-2">Easy to Scale</h3>              <p class="text-xs sm:text-sm text-slate-700 font-medium leading-relaxed">                Add teachers, classes, and students without rebuilding your curriculum.              </p>            </div>            <!-- 5. Clear Student Progression -->            <div class="p-4 sm:p-5 rounded-2xl bg-amber-50/30 border border-amber-200/60 shadow-sm hover:shadow transition-all text-center flex flex-col items-center">              <div class="w-12 h-12 rounded-full bg-amber-500 text-white flex items-center justify-center mb-3 shrink-0 shadow-sm">                <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/></svg>              </div>              <h3 class="font-extrabold text-slate-900 text-sm leading-tight mb-2">Clear Student<br>Progression</h3>              <p class="text-xs sm:text-sm text-slate-700 font-medium leading-relaxed">                Students move through a structured A1 → C1 learning path.              </p>            </div>            <!-- 6. Your School. Your Students. -->            <div class="p-4 sm:p-5 rounded-2xl bg-cyan-50/30 border border-cyan-200/60 shadow-sm hover:shadow transition-all text-center flex flex-col items-center">              <div class="w-12 h-12 rounded-full bg-cyan-600 text-white flex items-center justify-center mb-3 shrink-0 shadow-sm">                <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm0 4.25L5.75 9.5 12 11.75l6.25-2.25L12 7.25zM12 19l-5-2.73v-4.55l5 2.73 5-2.73v4.55L12 19z"/></svg>              </div>              <h3 class="font-extrabold text-slate-900 text-sm leading-tight mb-2">Your School.<br>Your Students.</h3>              <p class="text-xs sm:text-sm text-slate-700 font-medium leading-relaxed">                Use Remtoo to support your existing English curriculum.              </p>            </div>          </div>          <!-- Action Buttons (Book a 15-Minute Demo & See How It Works) -->
+          <!-- 6 Feature Cards in One Row (Subtle, thin borders, soft tint) -->          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 mb-10 max-w-7xl mx-auto">                        <!-- 1. Consistent Teaching -->            <div class="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-blue-200/60 shadow-sm hover:shadow transition-all text-center flex flex-col items-center">              <div class="w-12 h-12 rounded-full bg-blue-500 text-white flex items-center justify-center mb-3 shrink-0 shadow-sm">                <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 3s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>              </div>              <h3 class="font-extrabold text-slate-900 text-sm leading-tight mb-2">Consistent<br>Teaching</h3>              <p class="text-xs sm:text-sm text-slate-700 font-medium leading-relaxed">                Every teacher follows the same structured curriculum.              </p>            </div>            <!-- 2. Faster Teacher Onboarding -->            <div class="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-emerald-200/60 shadow-sm hover:shadow transition-all text-center flex flex-col items-center">              <div class="w-12 h-12 rounded-full bg-emerald-500 text-white flex items-center justify-center mb-3 shrink-0 shadow-sm">                <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg>              </div>              <h3 class="font-extrabold text-slate-900 text-sm leading-tight mb-2">Faster Teacher<br>Onboarding</h3>              <p class="text-xs sm:text-sm text-slate-700 font-medium leading-relaxed">                New teachers don't need weeks to prepare materials.              </p>            </div>            <!-- 3. Less Preparation -->            <div class="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-rose-200/60 shadow-sm hover:shadow transition-all text-center flex flex-col items-center">              <div class="w-12 h-12 rounded-full bg-rose-500 text-white flex items-center justify-center mb-3 shrink-0 shadow-sm">                <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>              </div>              <h3 class="font-extrabold text-slate-900 text-sm leading-tight mb-2">Less<br>Preparation</h3>              <p class="text-xs sm:text-sm text-slate-700 font-medium leading-relaxed">                Your teachers spend more time teaching and less time creating lessons.              </p>            </div>            <!-- 4. Easy to Scale -->            <div class="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-purple-200/60 shadow-sm hover:shadow transition-all text-center flex flex-col items-center">              <div class="w-12 h-12 rounded-full bg-purple-600 text-white flex items-center justify-center mb-3 shrink-0 shadow-sm">                <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M5 9.2h3V19H5zM10.6 5h2.8v14h-2.8zm5.6 8H19v6h-2.8z"/></svg>              </div>              <h3 class="font-extrabold text-slate-900 text-sm leading-tight mb-2">Easy to Scale</h3>              <p class="text-xs sm:text-sm text-slate-700 font-medium leading-relaxed">                Add teachers, classes, and students without rebuilding your curriculum.              </p>            </div>            <!-- 5. Clear Student Progression -->            <div class="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-amber-200/60 shadow-sm hover:shadow transition-all text-center flex flex-col items-center">              <div class="w-12 h-12 rounded-full bg-amber-500 text-white flex items-center justify-center mb-3 shrink-0 shadow-sm">                <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/></svg>              </div>              <h3 class="font-extrabold text-slate-900 text-sm leading-tight mb-2">Clear Student<br>Progression</h3>              <p class="text-xs sm:text-sm text-slate-700 font-medium leading-relaxed">                Students move through a structured A1 → C1 learning path.              </p>            </div>            <!-- 6. Your School. Your Students. -->            <div class="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-cyan-200/60 shadow-sm hover:shadow transition-all text-center flex flex-col items-center">              <div class="w-12 h-12 rounded-full bg-cyan-600 text-white flex items-center justify-center mb-3 shrink-0 shadow-sm">                <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm0 4.25L5.75 9.5 12 11.75l6.25-2.25L12 7.25zM12 19l-5-2.73v-4.55l5 2.73 5-2.73v4.55L12 19z"/></svg>              </div>              <h3 class="font-extrabold text-slate-900 text-sm leading-tight mb-2">Your School.<br>Your Students.</h3>              <p class="text-xs sm:text-sm text-slate-700 font-medium leading-relaxed">                Use Remtoo to support your existing English curriculum.              </p>            </div>          </div>          <!-- Action Buttons (Book a 15-Minute Demo & See How It Works) -->
           <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
             <a href="#pricing" class="w-full sm:w-auto px-10 py-4 text-base font-bold text-white bg-[#0052FF] hover:bg-blue-700 rounded-full shadow-md hover:shadow-lg transition-all inline-flex items-center justify-center gap-2">
               <span>Book a 15-Minute Demo</span>
@@ -2692,11 +2783,11 @@
         </div>
       </section>
 
-      <section class="relative pt-0 pb-0 bg-gradient-to-b from-[#eaf2fd] via-[#f5f9fe] to-white overflow-hidden">
+      <section class="cta-section relative pt-0 pb-0 bg-gradient-to-b from-[#eaf2fd] via-[#f5f9fe] to-white dark:from-[#0b0f19] dark:via-[#0e172a] dark:to-[#060913] overflow-hidden">
         <!-- Top Organic Smooth Wave Divider Transitioning into CTA -->
         <div class="w-full overflow-hidden leading-none relative z-10 -mt-px pointer-events-none select-none">
           <svg 
-            class="relative block w-full h-8 sm:h-12 md:h-14" 
+            class="cta-wave-top relative block w-full h-8 sm:h-12 md:h-14" 
             viewBox="0 0 1440 90" 
             fill="none" 
             xmlns="http://www.w3.org/2000/svg"
@@ -2704,12 +2795,14 @@
           >
             <!-- Layer 1: Soft sky wave behind -->
             <path 
+              class="cta-top-wave-1 transition-colors"
               d="M0,0 L1440,0 L1440,55 C1220,80 960,30 720,65 C480,95 240,40 0,65 Z" 
               fill="#bfdbfe" 
               fill-opacity="0.45"
             />
             <!-- Layer 2: White organic wave crest flowing from previous section into CTA -->
             <path 
+              class="cta-top-wave-2 transition-colors"
               d="M0,0 L1440,0 L1440,35 C1200,65 940,15 700,50 C440,80 200,20 0,45 Z" 
               fill="#ffffff"
             />
@@ -2718,26 +2811,27 @@
 
         <!-- CTA ambient background grid, glow & sparkles -->
         <div class="absolute inset-0 pointer-events-none overflow-hidden select-none z-0">
-          <div class="absolute inset-0 bg-grid-dense opacity-35"></div>
-          <div class="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-64 bg-blue-400/12 rounded-full blur-3xl animate-ambient-pulse"></div>
-          <div class="absolute top-1/2 right-1/4 -translate-y-1/2 w-80 h-64 bg-indigo-400/10 rounded-full blur-3xl"></div>
-          <div class="absolute top-6 left-[8%] w-10 h-10 rounded-full border border-blue-200/50 animate-ambient-float"></div>
+          <div class="absolute inset-0 bg-grid-dense opacity-35 dark:opacity-20"></div>
+          <div class="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-64 bg-blue-400/12 dark:bg-blue-500/10 rounded-full blur-3xl animate-ambient-pulse"></div>
+          <div class="absolute top-1/2 right-1/4 -translate-y-1/2 w-80 h-64 bg-indigo-400/10 dark:bg-indigo-500/10 rounded-full blur-3xl"></div>
+          <div class="absolute top-6 left-[8%] w-10 h-10 rounded-full border border-blue-200/50 dark:border-blue-400/30 animate-ambient-float"></div>
           <div class="absolute top-8 right-[10%] text-amber-400/70 animate-ambient-float-reverse">
             <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z"/></svg>
           </div>
-          <div class="absolute top-12 left-[20%] text-blue-300/40 font-mono text-lg">+</div>
-          <div class="absolute top-14 right-[25%] text-slate-300 font-mono text-lg">+</div>
+          <div class="absolute top-12 left-[20%] text-blue-300/40 dark:text-blue-400/30 font-mono text-lg">+</div>
+          <div class="absolute top-14 right-[25%] text-slate-300 dark:text-slate-600 font-mono text-lg">+</div>
         </div>
-        <!-- Main CTA Content (Shorter vertical profile) -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pb-6 sm:pb-8">
+
+        <!-- Main CTA Content (Generous vertical padding for centered balance) -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-12 sm:pt-16 lg:pt-20 pb-12 sm:pb-16 lg:pb-20">
           <div class="flex flex-col lg:flex-row items-center justify-between gap-6 relative max-w-5xl mx-auto">
             
             <!-- Left Headline & Subtitle -->
             <div class="text-center lg:text-left space-y-2 max-w-xl">
-              <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight leading-tight">
+              <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
                 Ready to make a bigger impact with English education?
               </h2>
-              <p class="text-sm sm:text-base text-slate-600 font-medium">
+              <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 font-medium">
                 Join thousands of teachers and schools using Remtoo.
               </p>
             </div>
@@ -2746,20 +2840,20 @@
             <div class="flex flex-col items-center lg:items-end text-center lg:text-right shrink-0 relative">
               <a 
                 href="#built-for-schools" 
-                class="px-7 py-3 text-xs sm:text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-full shadow-md hover:shadow-lg transition-all inline-flex items-center gap-2 group"
+                class="px-7 py-3 text-xs sm:text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-full shadow-md hover:shadow-lg transition-all inline-flex items-center gap-2 group cursor-pointer"
               >
                 <span>Book a 15-Minute Demo</span>
                 <span class="group-hover:translate-x-0.5 transition-transform">→</span>
               </a>
-              <p class="text-xs sm:text-sm text-slate-500 mt-1.5 font-medium">
+              <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1.5 font-medium">
                 No commitment. Just a better way to teach.
               </p>
 
               <!-- Handwritten Accent: "Better Teachers. Brighter Futures." -->
-              <div class="mt-2.5 font-handwriting text-xl sm:text-2xl text-blue-600 -rotate-3 select-none leading-tight">
+              <div class="mt-2.5 font-handwriting text-xl sm:text-2xl text-blue-600 dark:text-blue-400 -rotate-3 select-none leading-tight">
                 <div>Better Teachers.</div>
                 <div>Brighter Futures.</div>
-                <div class="w-14 h-0.5 bg-blue-400/50 rounded-full mx-auto lg:ml-auto mt-0.5 rotate-2"></div>
+                <div class="w-14 h-0.5 bg-blue-400/50 dark:bg-blue-400/40 rounded-full mx-auto lg:ml-auto mt-0.5 rotate-2"></div>
               </div>
             </div>
 
@@ -2769,7 +2863,7 @@
         <!-- Layered Organic Waves Leading into Navy Footer (Compact Height) -->
         <div class="w-full overflow-hidden leading-none relative z-10">
           <svg 
-            class="relative block w-full h-10 sm:h-16 md:h-20" 
+            class="cta-wave-bottom relative block w-full h-10 sm:h-16 md:h-20" 
             viewBox="0 0 1440 180" 
             fill="none" 
             xmlns="http://www.w3.org/2000/svg"
@@ -2777,18 +2871,21 @@
           >
             <!-- Layer 1: Soft Sky/Ice Blue wave behind -->
             <path 
+              class="cta-bot-wave-1 transition-colors"
               d="M0,90 C320,160 540,20 880,100 C1160,160 1340,80 1440,110 L1440,180 L0,180 Z" 
               fill="#dbeafe" 
               fill-opacity="0.6"
             />
             <!-- Layer 2: Medium Soft Blue wave middle -->
             <path 
+              class="cta-bot-wave-2 transition-colors"
               d="M0,120 C280,60 620,160 960,110 C1200,80 1360,130 1440,140 L1440,180 L0,180 Z" 
               fill="#bfdbfe" 
               fill-opacity="0.8"
             />
             <!-- Layer 3: Solid Dark Navy Wave matching footer (#0b1329) -->
             <path 
+              class="cta-bot-wave-3 transition-colors"
               d="M0,140 C360,110 720,180 1080,130 C1260,110 1380,150 1440,160 L1440,180 L0,180 Z" 
               fill="#0b1329"
             />
@@ -2801,7 +2898,7 @@
       <!-- PAGE 5: FOR TEACHERS -->
       <!-- ========================================================================= -->
       <div id="view-for-teachers" class="page-view hidden-view">
-        <section id="section-get-started" class="py-20 lg:py-24 bg-gradient-to-b from-[#eef6ff]/80 via-[#f8fbfe]/70 to-white border-t border-slate-100 relative overflow-hidden">
+        <section id="section-get-started" class="py-20 lg:py-24 bg-gradient-to-b from-[#eef6ff]/80 via-[#f8fbfe]/70 to-white dark:from-[#0b0f19] dark:via-[#0e1628] dark:to-[#0b0f19] border-t border-slate-100 dark:border-slate-800 relative overflow-hidden">
         <!-- Background subtle ambiance, grid lines & floating shapes -->
         <div class="absolute inset-0 pointer-events-none overflow-hidden select-none z-0">
           <!-- Architectural Grid Lines Pattern -->
@@ -2849,7 +2946,7 @@
           <!-- Section Header with Badges & Handwriting Accent -->
           <div class="text-center max-w-3xl mx-auto mb-16 relative">
             <!-- Eyebrow Pill -->
-            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200/80 text-blue-700 text-xs font-bold tracking-wide uppercase shadow-xs mb-3">
+            <div class="section-pill inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#e1effe] text-[#2563eb] text-xs font-black tracking-widest uppercase shadow-xs mb-3">
               <span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
               <span>GET STARTED TODAY</span>
             </div>
@@ -2921,7 +3018,7 @@
                     class="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
                   />
                   <!-- Pill Badge Overlay -->
-                  <div class="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/95 backdrop-blur-xs text-xs font-semibold text-slate-800 shadow-xs border border-slate-200/60">
+                  <div class="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/95 dark:bg-slate-900/95 backdrop-blur-xs text-xs font-semibold text-slate-800 dark:text-slate-200 shadow-xs border border-slate-200/60 dark:border-slate-700">
                     <span class="w-2 h-2 rounded-full bg-blue-600"></span>
                     <span>Individual Teachers</span>
                   </div>
@@ -2967,7 +3064,7 @@
                     class="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
                   />
                   <!-- Pill Badge Overlay -->
-                  <div class="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/95 backdrop-blur-xs text-xs font-semibold text-slate-800 shadow-xs border border-slate-200/60">
+                  <div class="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/95 dark:bg-slate-900/95 backdrop-blur-xs text-xs font-semibold text-slate-800 dark:text-slate-200 shadow-xs border border-slate-200/60 dark:border-slate-700">
                     <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
                     <span>Teams & Institutions</span>
                   </div>
@@ -3007,11 +3104,11 @@
       </section>
       
 
-        <section class="relative pt-0 pb-0 bg-gradient-to-b from-[#eaf2fd] via-[#f5f9fe] to-white overflow-hidden">
+        <section class="cta-section relative pt-0 pb-0 bg-gradient-to-b from-[#eaf2fd] via-[#f5f9fe] to-white dark:from-[#0b0f19] dark:via-[#0e172a] dark:to-[#060913] overflow-hidden">
         <!-- Top Organic Smooth Wave Divider Transitioning into CTA -->
         <div class="w-full overflow-hidden leading-none relative z-10 -mt-px pointer-events-none select-none">
           <svg 
-            class="relative block w-full h-8 sm:h-12 md:h-14" 
+            class="cta-wave-top relative block w-full h-8 sm:h-12 md:h-14" 
             viewBox="0 0 1440 90" 
             fill="none" 
             xmlns="http://www.w3.org/2000/svg"
@@ -3019,12 +3116,14 @@
           >
             <!-- Layer 1: Soft sky wave behind -->
             <path 
+              class="cta-top-wave-1 transition-colors"
               d="M0,0 L1440,0 L1440,55 C1220,80 960,30 720,65 C480,95 240,40 0,65 Z" 
               fill="#bfdbfe" 
               fill-opacity="0.45"
             />
             <!-- Layer 2: White organic wave crest flowing from previous section into CTA -->
             <path 
+              class="cta-top-wave-2 transition-colors"
               d="M0,0 L1440,0 L1440,35 C1200,65 940,15 700,50 C440,80 200,20 0,45 Z" 
               fill="#ffffff"
             />
@@ -3033,26 +3132,27 @@
 
         <!-- CTA ambient background grid, glow & sparkles -->
         <div class="absolute inset-0 pointer-events-none overflow-hidden select-none z-0">
-          <div class="absolute inset-0 bg-grid-dense opacity-35"></div>
-          <div class="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-64 bg-blue-400/12 rounded-full blur-3xl animate-ambient-pulse"></div>
-          <div class="absolute top-1/2 right-1/4 -translate-y-1/2 w-80 h-64 bg-indigo-400/10 rounded-full blur-3xl"></div>
-          <div class="absolute top-6 left-[8%] w-10 h-10 rounded-full border border-blue-200/50 animate-ambient-float"></div>
+          <div class="absolute inset-0 bg-grid-dense opacity-35 dark:opacity-20"></div>
+          <div class="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-64 bg-blue-400/12 dark:bg-blue-500/10 rounded-full blur-3xl animate-ambient-pulse"></div>
+          <div class="absolute top-1/2 right-1/4 -translate-y-1/2 w-80 h-64 bg-indigo-400/10 dark:bg-indigo-500/10 rounded-full blur-3xl"></div>
+          <div class="absolute top-6 left-[8%] w-10 h-10 rounded-full border border-blue-200/50 dark:border-blue-400/30 animate-ambient-float"></div>
           <div class="absolute top-8 right-[10%] text-amber-400/70 animate-ambient-float-reverse">
             <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z"/></svg>
           </div>
-          <div class="absolute top-12 left-[20%] text-blue-300/40 font-mono text-lg">+</div>
-          <div class="absolute top-14 right-[25%] text-slate-300 font-mono text-lg">+</div>
+          <div class="absolute top-12 left-[20%] text-blue-300/40 dark:text-blue-400/30 font-mono text-lg">+</div>
+          <div class="absolute top-14 right-[25%] text-slate-300 dark:text-slate-600 font-mono text-lg">+</div>
         </div>
-        <!-- Main CTA Content (Shorter vertical profile) -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pb-6 sm:pb-8">
+
+        <!-- Main CTA Content (Generous vertical padding for centered balance) -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-12 sm:pt-16 lg:pt-20 pb-12 sm:pb-16 lg:pb-20">
           <div class="flex flex-col lg:flex-row items-center justify-between gap-6 relative max-w-5xl mx-auto">
             
             <!-- Left Headline & Subtitle -->
             <div class="text-center lg:text-left space-y-2 max-w-xl">
-              <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight leading-tight">
+              <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
                 Ready to make a bigger impact with English education?
               </h2>
-              <p class="text-sm sm:text-base text-slate-600 font-medium">
+              <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 font-medium">
                 Join thousands of teachers and schools using Remtoo.
               </p>
             </div>
@@ -3061,20 +3161,20 @@
             <div class="flex flex-col items-center lg:items-end text-center lg:text-right shrink-0 relative">
               <a 
                 href="#built-for-schools" 
-                class="px-7 py-3 text-xs sm:text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-full shadow-md hover:shadow-lg transition-all inline-flex items-center gap-2 group"
+                class="px-7 py-3 text-xs sm:text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-full shadow-md hover:shadow-lg transition-all inline-flex items-center gap-2 group cursor-pointer"
               >
                 <span>Book a 15-Minute Demo</span>
                 <span class="group-hover:translate-x-0.5 transition-transform">→</span>
               </a>
-              <p class="text-xs sm:text-sm text-slate-500 mt-1.5 font-medium">
+              <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1.5 font-medium">
                 No commitment. Just a better way to teach.
               </p>
 
               <!-- Handwritten Accent: "Better Teachers. Brighter Futures." -->
-              <div class="mt-2.5 font-handwriting text-xl sm:text-2xl text-blue-600 -rotate-3 select-none leading-tight">
+              <div class="mt-2.5 font-handwriting text-xl sm:text-2xl text-blue-600 dark:text-blue-400 -rotate-3 select-none leading-tight">
                 <div>Better Teachers.</div>
                 <div>Brighter Futures.</div>
-                <div class="w-14 h-0.5 bg-blue-400/50 rounded-full mx-auto lg:ml-auto mt-0.5 rotate-2"></div>
+                <div class="w-14 h-0.5 bg-blue-400/50 dark:bg-blue-400/40 rounded-full mx-auto lg:ml-auto mt-0.5 rotate-2"></div>
               </div>
             </div>
 
@@ -3084,7 +3184,7 @@
         <!-- Layered Organic Waves Leading into Navy Footer (Compact Height) -->
         <div class="w-full overflow-hidden leading-none relative z-10">
           <svg 
-            class="relative block w-full h-10 sm:h-16 md:h-20" 
+            class="cta-wave-bottom relative block w-full h-10 sm:h-16 md:h-20" 
             viewBox="0 0 1440 180" 
             fill="none" 
             xmlns="http://www.w3.org/2000/svg"
@@ -3092,18 +3192,21 @@
           >
             <!-- Layer 1: Soft Sky/Ice Blue wave behind -->
             <path 
+              class="cta-bot-wave-1 transition-colors"
               d="M0,90 C320,160 540,20 880,100 C1160,160 1340,80 1440,110 L1440,180 L0,180 Z" 
               fill="#dbeafe" 
               fill-opacity="0.6"
             />
             <!-- Layer 2: Medium Soft Blue wave middle -->
             <path 
+              class="cta-bot-wave-2 transition-colors"
               d="M0,120 C280,60 620,160 960,110 C1200,80 1360,130 1440,140 L1440,180 L0,180 Z" 
               fill="#bfdbfe" 
               fill-opacity="0.8"
             />
             <!-- Layer 3: Solid Dark Navy Wave matching footer (#0b1329) -->
             <path 
+              class="cta-bot-wave-3 transition-colors"
               d="M0,140 C360,110 720,180 1080,130 C1260,110 1380,150 1440,160 L1440,180 L0,180 Z" 
               fill="#0b1329"
             />
@@ -3116,7 +3219,7 @@
       <!-- PAGE 6: PRICING -->
       <!-- ========================================================================= -->
       <div id="view-pricing" class="page-view hidden-view">
-        <section id="section-pricing" class="py-20 lg:py-24 bg-gradient-to-b from-[#eef6ff]/80 via-[#f8fbfe]/70 to-white border-t border-slate-100 relative overflow-hidden">
+        <section id="section-pricing" class="py-20 lg:py-24 bg-gradient-to-b from-[#eef6ff]/80 via-[#f8fbfe]/70 to-white dark:from-[#0b0f19] dark:via-[#0e1628] dark:to-[#0b0f19] border-t border-slate-100 dark:border-slate-800 relative overflow-hidden">
         <!-- Background subtle ambiance, grid lines & floating shapes -->
         <div class="absolute inset-0 pointer-events-none overflow-hidden select-none z-0">
           <!-- Architectural Grid Lines Pattern -->
@@ -3162,7 +3265,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div class="text-center max-w-3xl mx-auto mb-14 space-y-3 relative">
-            <span class="inline-block px-3.5 py-1 text-xs font-bold tracking-wider text-blue-700 bg-blue-100/70 rounded-full uppercase">
+            <span class="section-pill inline-block px-4 py-1.5 text-xs font-black tracking-widest text-[#2563eb] bg-[#e1effe] rounded-full uppercase shadow-xs">
               Simple Pricing
             </span>
             <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
@@ -3266,11 +3369,102 @@
       </section>
       
 
-        <section class="relative pt-0 pb-0 bg-gradient-to-b from-[#eaf2fd] via-[#f5f9fe] to-white overflow-hidden">
+                    <!-- FAQ Section (Smaller design with expandable accordion cards in a container) -->
+      <section class="py-16 bg-gradient-to-b from-white via-[#f8fbfe]/60 to-white dark:from-[#0b0f19] dark:via-[#0e1628] dark:to-[#0b0f19] border-t border-slate-100 dark:border-slate-800 relative overflow-hidden">
+        <div class="absolute inset-0 pointer-events-none bg-grid-dense opacity-20 z-0"></div>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          
+          <!-- Section Header -->
+          <div class="text-center max-w-2xl mx-auto mb-10 space-y-2.5">
+            <span class="section-pill inline-block px-4 py-1.5 text-xs font-black tracking-widest text-[#2563eb] bg-[#e1effe] rounded-full uppercase shadow-xs">
+              FAQ
+            </span>
+            <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
+              Frequently Asked Questions
+            </h2>
+            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              Got questions about pricing, licenses, or lesson materials? We’ve got answers.
+            </p>
+          </div>
+
+          <!-- FAQ Container with Single Column Cards -->
+          <div class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-5 sm:p-7 shadow-sm max-w-3xl mx-auto space-y-3">
+            
+            <!-- FAQ 1 -->
+            <details class="group bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-700/80 rounded-xl p-4 shadow-2xs cursor-pointer transition-all hover:border-blue-300 dark:hover:border-blue-600">
+              <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base flex items-center justify-between outline-none select-none gap-3">
+                <span>How does billing work for schools?</span>
+                <span class="w-6 h-6 rounded-full bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 flex items-center justify-center shrink-0 group-open:rotate-180 transition-transform shadow-2xs">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                </span>
+              </summary>
+              <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-3 pt-3 border-t border-slate-200/70 dark:border-slate-700/70 leading-relaxed">
+                Schools can subscribe via flexible monthly or annual invoicing. We also support official purchase orders (POs) and school-wide institutional licenses with multi-teacher management.
+              </p>
+            </details>
+
+            <!-- FAQ 2 -->
+            <details class="group bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-700/80 rounded-xl p-4 shadow-2xs cursor-pointer transition-all hover:border-blue-300 dark:hover:border-blue-600">
+              <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base flex items-center justify-between outline-none select-none gap-3">
+                <span>Can individual teachers subscribe?</span>
+                <span class="w-6 h-6 rounded-full bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 flex items-center justify-center shrink-0 group-open:rotate-180 transition-transform shadow-2xs">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                </span>
+              </summary>
+              <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-3 pt-3 border-t border-slate-200/70 dark:border-slate-700/70 leading-relaxed">
+                Yes! Independent teachers can choose our Teacher Plan to get full, unlimited access to the complete A1–C1 curriculum, slide decks, audio dialogues, and printable worksheets.
+              </p>
+            </details>
+
+            <!-- FAQ 3 -->
+            <details class="group bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-700/80 rounded-xl p-4 shadow-2xs cursor-pointer transition-all hover:border-blue-300 dark:hover:border-blue-600">
+              <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base flex items-center justify-between outline-none select-none gap-3">
+                <span>What formats are the lesson materials in?</span>
+                <span class="w-6 h-6 rounded-full bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 flex items-center justify-center shrink-0 group-open:rotate-180 transition-transform shadow-2xs">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                </span>
+              </summary>
+              <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-3 pt-3 border-t border-slate-200/70 dark:border-slate-700/70 leading-relaxed">
+                All lessons include PowerPoint (PPTX) and interactive PDF slide decks for screen sharing, print-ready PDF student worksheets, step-by-step teacher scripts, and MP4/MP3 audio dialogues.
+              </p>
+            </details>
+
+            <!-- FAQ 4 -->
+            <details class="group bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-700/80 rounded-xl p-4 shadow-2xs cursor-pointer transition-all hover:border-blue-300 dark:hover:border-blue-600">
+              <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base flex items-center justify-between outline-none select-none gap-3">
+                <span>Can I test lessons before purchasing?</span>
+                <span class="w-6 h-6 rounded-full bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 flex items-center justify-center shrink-0 group-open:rotate-180 transition-transform shadow-2xs">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                </span>
+              </summary>
+              <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-3 pt-3 border-t border-slate-200/70 dark:border-slate-700/70 leading-relaxed">
+                Absolutely! You can explore free sample lessons across all proficiency levels (A1–C1) instantly on our website without needing any credit card or commitment.
+              </p>
+            </details>
+
+            <!-- FAQ 5 -->
+            <details class="group bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-700/80 rounded-xl p-4 shadow-2xs cursor-pointer transition-all hover:border-blue-300 dark:hover:border-blue-600">
+              <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base flex items-center justify-between outline-none select-none gap-3">
+                <span>Are materials suitable for online and in-person teaching?</span>
+                <span class="w-6 h-6 rounded-full bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 flex items-center justify-center shrink-0 group-open:rotate-180 transition-transform shadow-2xs">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                </span>
+              </summary>
+              <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-3 pt-3 border-t border-slate-200/70 dark:border-slate-700/70 leading-relaxed">
+                Yes, Remtoo is fully optimized for both. The slide presentations work seamlessly on Zoom, Google Meet, Microsoft Teams, and physical classroom interactive whiteboards.
+              </p>
+            </details>
+
+          </div>
+
+        </div>
+      </section>
+
+<section class="cta-section relative pt-0 pb-0 bg-gradient-to-b from-[#eaf2fd] via-[#f5f9fe] to-white dark:from-[#0b0f19] dark:via-[#0e172a] dark:to-[#060913] overflow-hidden">
         <!-- Top Organic Smooth Wave Divider Transitioning into CTA -->
         <div class="w-full overflow-hidden leading-none relative z-10 -mt-px pointer-events-none select-none">
           <svg 
-            class="relative block w-full h-8 sm:h-12 md:h-14" 
+            class="cta-wave-top relative block w-full h-8 sm:h-12 md:h-14" 
             viewBox="0 0 1440 90" 
             fill="none" 
             xmlns="http://www.w3.org/2000/svg"
@@ -3278,12 +3472,14 @@
           >
             <!-- Layer 1: Soft sky wave behind -->
             <path 
+              class="cta-top-wave-1 transition-colors"
               d="M0,0 L1440,0 L1440,55 C1220,80 960,30 720,65 C480,95 240,40 0,65 Z" 
               fill="#bfdbfe" 
               fill-opacity="0.45"
             />
             <!-- Layer 2: White organic wave crest flowing from previous section into CTA -->
             <path 
+              class="cta-top-wave-2 transition-colors"
               d="M0,0 L1440,0 L1440,35 C1200,65 940,15 700,50 C440,80 200,20 0,45 Z" 
               fill="#ffffff"
             />
@@ -3292,26 +3488,27 @@
 
         <!-- CTA ambient background grid, glow & sparkles -->
         <div class="absolute inset-0 pointer-events-none overflow-hidden select-none z-0">
-          <div class="absolute inset-0 bg-grid-dense opacity-35"></div>
-          <div class="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-64 bg-blue-400/12 rounded-full blur-3xl animate-ambient-pulse"></div>
-          <div class="absolute top-1/2 right-1/4 -translate-y-1/2 w-80 h-64 bg-indigo-400/10 rounded-full blur-3xl"></div>
-          <div class="absolute top-6 left-[8%] w-10 h-10 rounded-full border border-blue-200/50 animate-ambient-float"></div>
+          <div class="absolute inset-0 bg-grid-dense opacity-35 dark:opacity-20"></div>
+          <div class="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-64 bg-blue-400/12 dark:bg-blue-500/10 rounded-full blur-3xl animate-ambient-pulse"></div>
+          <div class="absolute top-1/2 right-1/4 -translate-y-1/2 w-80 h-64 bg-indigo-400/10 dark:bg-indigo-500/10 rounded-full blur-3xl"></div>
+          <div class="absolute top-6 left-[8%] w-10 h-10 rounded-full border border-blue-200/50 dark:border-blue-400/30 animate-ambient-float"></div>
           <div class="absolute top-8 right-[10%] text-amber-400/70 animate-ambient-float-reverse">
             <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z"/></svg>
           </div>
-          <div class="absolute top-12 left-[20%] text-blue-300/40 font-mono text-lg">+</div>
-          <div class="absolute top-14 right-[25%] text-slate-300 font-mono text-lg">+</div>
+          <div class="absolute top-12 left-[20%] text-blue-300/40 dark:text-blue-400/30 font-mono text-lg">+</div>
+          <div class="absolute top-14 right-[25%] text-slate-300 dark:text-slate-600 font-mono text-lg">+</div>
         </div>
-        <!-- Main CTA Content (Shorter vertical profile) -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pb-6 sm:pb-8">
+
+        <!-- Main CTA Content (Generous vertical padding for centered balance) -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-12 sm:pt-16 lg:pt-20 pb-12 sm:pb-16 lg:pb-20">
           <div class="flex flex-col lg:flex-row items-center justify-between gap-6 relative max-w-5xl mx-auto">
             
             <!-- Left Headline & Subtitle -->
             <div class="text-center lg:text-left space-y-2 max-w-xl">
-              <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight leading-tight">
+              <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
                 Ready to make a bigger impact with English education?
               </h2>
-              <p class="text-sm sm:text-base text-slate-600 font-medium">
+              <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 font-medium">
                 Join thousands of teachers and schools using Remtoo.
               </p>
             </div>
@@ -3320,20 +3517,20 @@
             <div class="flex flex-col items-center lg:items-end text-center lg:text-right shrink-0 relative">
               <a 
                 href="#built-for-schools" 
-                class="px-7 py-3 text-xs sm:text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-full shadow-md hover:shadow-lg transition-all inline-flex items-center gap-2 group"
+                class="px-7 py-3 text-xs sm:text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-full shadow-md hover:shadow-lg transition-all inline-flex items-center gap-2 group cursor-pointer"
               >
                 <span>Book a 15-Minute Demo</span>
                 <span class="group-hover:translate-x-0.5 transition-transform">→</span>
               </a>
-              <p class="text-xs sm:text-sm text-slate-500 mt-1.5 font-medium">
+              <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1.5 font-medium">
                 No commitment. Just a better way to teach.
               </p>
 
               <!-- Handwritten Accent: "Better Teachers. Brighter Futures." -->
-              <div class="mt-2.5 font-handwriting text-xl sm:text-2xl text-blue-600 -rotate-3 select-none leading-tight">
+              <div class="mt-2.5 font-handwriting text-xl sm:text-2xl text-blue-600 dark:text-blue-400 -rotate-3 select-none leading-tight">
                 <div>Better Teachers.</div>
                 <div>Brighter Futures.</div>
-                <div class="w-14 h-0.5 bg-blue-400/50 rounded-full mx-auto lg:ml-auto mt-0.5 rotate-2"></div>
+                <div class="w-14 h-0.5 bg-blue-400/50 dark:bg-blue-400/40 rounded-full mx-auto lg:ml-auto mt-0.5 rotate-2"></div>
               </div>
             </div>
 
@@ -3343,7 +3540,7 @@
         <!-- Layered Organic Waves Leading into Navy Footer (Compact Height) -->
         <div class="w-full overflow-hidden leading-none relative z-10">
           <svg 
-            class="relative block w-full h-10 sm:h-16 md:h-20" 
+            class="cta-wave-bottom relative block w-full h-10 sm:h-16 md:h-20" 
             viewBox="0 0 1440 180" 
             fill="none" 
             xmlns="http://www.w3.org/2000/svg"
@@ -3351,18 +3548,21 @@
           >
             <!-- Layer 1: Soft Sky/Ice Blue wave behind -->
             <path 
+              class="cta-bot-wave-1 transition-colors"
               d="M0,90 C320,160 540,20 880,100 C1160,160 1340,80 1440,110 L1440,180 L0,180 Z" 
               fill="#dbeafe" 
               fill-opacity="0.6"
             />
             <!-- Layer 2: Medium Soft Blue wave middle -->
             <path 
+              class="cta-bot-wave-2 transition-colors"
               d="M0,120 C280,60 620,160 960,110 C1200,80 1360,130 1440,140 L1440,180 L0,180 Z" 
               fill="#bfdbfe" 
               fill-opacity="0.8"
             />
             <!-- Layer 3: Solid Dark Navy Wave matching footer (#0b1329) -->
             <path 
+              class="cta-bot-wave-3 transition-colors"
               d="M0,140 C360,110 720,180 1080,130 C1260,110 1380,150 1440,160 L1440,180 L0,180 Z" 
               fill="#0b1329"
             />
@@ -3375,7 +3575,7 @@
       <!-- PAGE 7: FREE SAMPLE -->
       <!-- ========================================================================= -->
       <div id="view-free-sample" class="page-view hidden-view">
-        <section id="section-free-sample" class="py-20 lg:py-24 bg-gradient-to-b from-[#eef6ff]/80 via-[#f8fbfe]/70 to-white border-t border-slate-100 relative overflow-hidden">
+        <section id="section-free-sample" class="py-20 lg:py-24 bg-gradient-to-b from-[#eef6ff]/80 via-[#f8fbfe]/70 to-white dark:from-[#0b0f19] dark:via-[#0e1628] dark:to-[#0b0f19] border-t border-slate-100 dark:border-slate-800 relative overflow-hidden">
         <!-- Background subtle ambiance, grid lines & floating shapes -->
         <div class="absolute inset-0 pointer-events-none overflow-hidden select-none z-0">
           <!-- Architectural Grid Lines Pattern -->
@@ -3422,7 +3622,7 @@
           
           <!-- Section Header (Matching FreeSample.jpeg) -->
           <div class="text-center max-w-3xl mx-auto mb-10 space-y-3.5 relative">
-            <span class="inline-block px-4 py-1.5 text-xs font-black tracking-widest text-[#2563eb] bg-[#e1effe] rounded-full uppercase">
+            <span class="section-pill inline-block px-4 py-1.5 text-xs font-black tracking-widest text-[#2563eb] bg-[#e1effe] rounded-full uppercase shadow-xs">
               FREE SAMPLE
             </span>
             <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">
@@ -3899,11 +4099,11 @@
       </section>
       
 
-        <section class="relative pt-0 pb-0 bg-gradient-to-b from-[#eaf2fd] via-[#f5f9fe] to-white overflow-hidden">
+        <section class="cta-section relative pt-0 pb-0 bg-gradient-to-b from-[#eaf2fd] via-[#f5f9fe] to-white dark:from-[#0b0f19] dark:via-[#0e172a] dark:to-[#060913] overflow-hidden">
         <!-- Top Organic Smooth Wave Divider Transitioning into CTA -->
         <div class="w-full overflow-hidden leading-none relative z-10 -mt-px pointer-events-none select-none">
           <svg 
-            class="relative block w-full h-8 sm:h-12 md:h-14" 
+            class="cta-wave-top relative block w-full h-8 sm:h-12 md:h-14" 
             viewBox="0 0 1440 90" 
             fill="none" 
             xmlns="http://www.w3.org/2000/svg"
@@ -3911,12 +4111,14 @@
           >
             <!-- Layer 1: Soft sky wave behind -->
             <path 
+              class="cta-top-wave-1 transition-colors"
               d="M0,0 L1440,0 L1440,55 C1220,80 960,30 720,65 C480,95 240,40 0,65 Z" 
               fill="#bfdbfe" 
               fill-opacity="0.45"
             />
             <!-- Layer 2: White organic wave crest flowing from previous section into CTA -->
             <path 
+              class="cta-top-wave-2 transition-colors"
               d="M0,0 L1440,0 L1440,35 C1200,65 940,15 700,50 C440,80 200,20 0,45 Z" 
               fill="#ffffff"
             />
@@ -3925,26 +4127,27 @@
 
         <!-- CTA ambient background grid, glow & sparkles -->
         <div class="absolute inset-0 pointer-events-none overflow-hidden select-none z-0">
-          <div class="absolute inset-0 bg-grid-dense opacity-35"></div>
-          <div class="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-64 bg-blue-400/12 rounded-full blur-3xl animate-ambient-pulse"></div>
-          <div class="absolute top-1/2 right-1/4 -translate-y-1/2 w-80 h-64 bg-indigo-400/10 rounded-full blur-3xl"></div>
-          <div class="absolute top-6 left-[8%] w-10 h-10 rounded-full border border-blue-200/50 animate-ambient-float"></div>
+          <div class="absolute inset-0 bg-grid-dense opacity-35 dark:opacity-20"></div>
+          <div class="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-64 bg-blue-400/12 dark:bg-blue-500/10 rounded-full blur-3xl animate-ambient-pulse"></div>
+          <div class="absolute top-1/2 right-1/4 -translate-y-1/2 w-80 h-64 bg-indigo-400/10 dark:bg-indigo-500/10 rounded-full blur-3xl"></div>
+          <div class="absolute top-6 left-[8%] w-10 h-10 rounded-full border border-blue-200/50 dark:border-blue-400/30 animate-ambient-float"></div>
           <div class="absolute top-8 right-[10%] text-amber-400/70 animate-ambient-float-reverse">
             <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z"/></svg>
           </div>
-          <div class="absolute top-12 left-[20%] text-blue-300/40 font-mono text-lg">+</div>
-          <div class="absolute top-14 right-[25%] text-slate-300 font-mono text-lg">+</div>
+          <div class="absolute top-12 left-[20%] text-blue-300/40 dark:text-blue-400/30 font-mono text-lg">+</div>
+          <div class="absolute top-14 right-[25%] text-slate-300 dark:text-slate-600 font-mono text-lg">+</div>
         </div>
-        <!-- Main CTA Content (Shorter vertical profile) -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pb-6 sm:pb-8">
+
+        <!-- Main CTA Content (Generous vertical padding for centered balance) -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-12 sm:pt-16 lg:pt-20 pb-12 sm:pb-16 lg:pb-20">
           <div class="flex flex-col lg:flex-row items-center justify-between gap-6 relative max-w-5xl mx-auto">
             
             <!-- Left Headline & Subtitle -->
             <div class="text-center lg:text-left space-y-2 max-w-xl">
-              <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight leading-tight">
+              <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
                 Ready to make a bigger impact with English education?
               </h2>
-              <p class="text-sm sm:text-base text-slate-600 font-medium">
+              <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 font-medium">
                 Join thousands of teachers and schools using Remtoo.
               </p>
             </div>
@@ -3953,20 +4156,20 @@
             <div class="flex flex-col items-center lg:items-end text-center lg:text-right shrink-0 relative">
               <a 
                 href="#built-for-schools" 
-                class="px-7 py-3 text-xs sm:text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-full shadow-md hover:shadow-lg transition-all inline-flex items-center gap-2 group"
+                class="px-7 py-3 text-xs sm:text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-full shadow-md hover:shadow-lg transition-all inline-flex items-center gap-2 group cursor-pointer"
               >
                 <span>Book a 15-Minute Demo</span>
                 <span class="group-hover:translate-x-0.5 transition-transform">→</span>
               </a>
-              <p class="text-xs sm:text-sm text-slate-500 mt-1.5 font-medium">
+              <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1.5 font-medium">
                 No commitment. Just a better way to teach.
               </p>
 
               <!-- Handwritten Accent: "Better Teachers. Brighter Futures." -->
-              <div class="mt-2.5 font-handwriting text-xl sm:text-2xl text-blue-600 -rotate-3 select-none leading-tight">
+              <div class="mt-2.5 font-handwriting text-xl sm:text-2xl text-blue-600 dark:text-blue-400 -rotate-3 select-none leading-tight">
                 <div>Better Teachers.</div>
                 <div>Brighter Futures.</div>
-                <div class="w-14 h-0.5 bg-blue-400/50 rounded-full mx-auto lg:ml-auto mt-0.5 rotate-2"></div>
+                <div class="w-14 h-0.5 bg-blue-400/50 dark:bg-blue-400/40 rounded-full mx-auto lg:ml-auto mt-0.5 rotate-2"></div>
               </div>
             </div>
 
@@ -3976,7 +4179,7 @@
         <!-- Layered Organic Waves Leading into Navy Footer (Compact Height) -->
         <div class="w-full overflow-hidden leading-none relative z-10">
           <svg 
-            class="relative block w-full h-10 sm:h-16 md:h-20" 
+            class="cta-wave-bottom relative block w-full h-10 sm:h-16 md:h-20" 
             viewBox="0 0 1440 180" 
             fill="none" 
             xmlns="http://www.w3.org/2000/svg"
@@ -3984,18 +4187,21 @@
           >
             <!-- Layer 1: Soft Sky/Ice Blue wave behind -->
             <path 
+              class="cta-bot-wave-1 transition-colors"
               d="M0,90 C320,160 540,20 880,100 C1160,160 1340,80 1440,110 L1440,180 L0,180 Z" 
               fill="#dbeafe" 
               fill-opacity="0.6"
             />
             <!-- Layer 2: Medium Soft Blue wave middle -->
             <path 
+              class="cta-bot-wave-2 transition-colors"
               d="M0,120 C280,60 620,160 960,110 C1200,80 1360,130 1440,140 L1440,180 L0,180 Z" 
               fill="#bfdbfe" 
               fill-opacity="0.8"
             />
             <!-- Layer 3: Solid Dark Navy Wave matching footer (#0b1329) -->
             <path 
+              class="cta-bot-wave-3 transition-colors"
               d="M0,140 C360,110 720,180 1080,130 C1260,110 1380,150 1440,160 L1440,180 L0,180 Z" 
               fill="#0b1329"
             />
@@ -4623,6 +4829,47 @@
             mobileMenu.classList.toggle("hidden");
           });
         }
+
+        // Dark Mode Controller
+        function setDarkMode(enableDark) {
+          if (enableDark) {
+            document.documentElement.classList.add('dark');
+            try { localStorage.setItem('remtoo-theme', 'dark'); } catch (e) {}
+          } else {
+            document.documentElement.classList.remove('dark');
+            try { localStorage.setItem('remtoo-theme', 'light'); } catch (e) {}
+          }
+          syncThemeUI(enableDark);
+        }
+
+        function toggleTheme() {
+          const isDark = document.documentElement.classList.contains('dark');
+          setDarkMode(!isDark);
+        }
+
+        function syncThemeUI(isDark) {
+          document.querySelectorAll('.theme-mode-text').forEach(el => {
+            el.textContent = isDark ? 'Dark Mode' : 'Light Mode';
+          });
+        }
+
+        // Attach listeners to all theme toggle buttons
+        const themeBtnDesktop = document.getElementById('theme-toggle-desktop');
+        const themeBtnMobile = document.getElementById('theme-toggle-mobile');
+        const themeBtnMenu = document.getElementById('theme-toggle-menu');
+
+        [themeBtnDesktop, themeBtnMobile, themeBtnMenu].forEach(btn => {
+          if (btn) {
+            btn.addEventListener('click', function(e) {
+              e.preventDefault();
+              e.stopPropagation();
+              toggleTheme();
+            });
+          }
+        });
+
+        // Initialize label text
+        syncThemeUI(document.documentElement.classList.contains('dark'));
 
         // Respond to browser back/forward buttons
         window.addEventListener("popstate", function() {
