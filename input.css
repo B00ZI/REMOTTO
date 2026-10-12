@@ -277,7 +277,7 @@ html.dark [class*="bg-white/"] {
 
 html.dark .bg-slate-50,
 html.dark .bg-slate-100,
-html.dark [class*="bg-slate-50"],
+html.dark [class*="bg-slate-50"]:not([class*="bg-slate-500"]),
 html.dark [class*="bg-slate-100"] {
   background-color: #172136 !important;
 }
@@ -471,48 +471,48 @@ html.dark [class*="border-cyan-"] {
 
 /* Soft Pastel Background Overrides (Solid dark surfaces, no unwanted transparency) */
 html.dark .bg-blue-50,
-html.dark [class*="bg-blue-50"] {
+html.dark [class*="bg-blue-50"]:not([class*="bg-blue-500"]) {
   background-color: #131d31 !important;
   border-color: #1e3354 !important;
 }
 html.dark .bg-emerald-50,
-html.dark [class*="bg-emerald-50"] {
+html.dark [class*="bg-emerald-50"]:not([class*="bg-emerald-500"]) {
   background-color: #0d221c !important;
   border-color: #174233 !important;
 }
 html.dark .bg-rose-50,
-html.dark [class*="bg-rose-50"] {
+html.dark [class*="bg-rose-50"]:not([class*="bg-rose-500"]) {
   background-color: #241119 !important;
   border-color: #4a1d2d !important;
 }
 html.dark .bg-purple-50,
-html.dark [class*="bg-purple-50"] {
+html.dark [class*="bg-purple-50"]:not([class*="bg-purple-500"]) {
   background-color: #1a142c !important;
   border-color: #3b2361 !important;
 }
 html.dark .bg-amber-50,
-html.dark [class*="bg-amber-50"] {
+html.dark [class*="bg-amber-50"]:not([class*="bg-amber-500"]) {
   background-color: #221a0f !important;
   border-color: #483416 !important;
 }
 html.dark .bg-cyan-50,
-html.dark [class*="bg-cyan-50"] {
+html.dark [class*="bg-cyan-50"]:not([class*="bg-cyan-500"]) {
   background-color: #0d2127 !important;
   border-color: #15414d !important;
 }
 
 /* Action buttons on pricing cards */
-html.dark a[class*="bg-blue-50"] {
+html.dark a[class*="bg-blue-50"]:not([class*="bg-blue-500"]) {
   background-color: #1e293b !important;
   color: #93c5fd !important;
   border: 1px solid #2e4063 !important;
 }
-html.dark a[class*="bg-purple-50"] {
+html.dark a[class*="bg-purple-50"]:not([class*="bg-purple-500"]) {
   background-color: #1e293b !important;
   color: #d8b4fe !important;
   border: 1px solid #3b2361 !important;
 }
-html.dark a[class*="bg-emerald-50"] {
+html.dark a[class*="bg-emerald-50"]:not([class*="bg-emerald-500"]) {
   background-color: #1e293b !important;
   color: #6ee7b7 !important;
   border: 1px solid #174233 !important;
@@ -662,27 +662,27 @@ html.dark .bg-\[\#fbfdff\] {
 }
 
 /* Built for Schools - 6 Feature Cards (Solid Surfaces, Established Palette) */
-html.dark #section-built-for-schools [class*="bg-blue-50"] {
+html.dark #section-built-for-schools [class*="bg-blue-50"]:not([class*="bg-blue-500"]) {
   background-color: #131d31 !important;
   border-color: #1e3354 !important;
 }
-html.dark #section-built-for-schools [class*="bg-emerald-50"] {
+html.dark #section-built-for-schools [class*="bg-emerald-50"]:not([class*="bg-emerald-500"]) {
   background-color: #0d221c !important;
   border-color: #174233 !important;
 }
-html.dark #section-built-for-schools [class*="bg-rose-50"] {
+html.dark #section-built-for-schools [class*="bg-rose-50"]:not([class*="bg-rose-500"]) {
   background-color: #241119 !important;
   border-color: #4a1d2d !important;
 }
-html.dark #section-built-for-schools [class*="bg-purple-50"] {
+html.dark #section-built-for-schools [class*="bg-purple-50"]:not([class*="bg-purple-500"]) {
   background-color: #1a142c !important;
   border-color: #3b2361 !important;
 }
-html.dark #section-built-for-schools [class*="bg-amber-50"] {
+html.dark #section-built-for-schools [class*="bg-amber-50"]:not([class*="bg-amber-500"]) {
   background-color: #221a0f !important;
   border-color: #483416 !important;
 }
-html.dark #section-built-for-schools [class*="bg-cyan-50"] {
+html.dark #section-built-for-schools [class*="bg-cyan-50"]:not([class*="bg-cyan-500"]) {
   background-color: #0d2127 !important;
   border-color: #15414d !important;
 }
@@ -692,7 +692,7 @@ html.dark #how-it-works .bg-white {
   background-color: #131b2e !important;
   border-color: #1e293b !important;
 }
-html.dark #how-it-works [class*="bg-slate-50"] {
+html.dark #how-it-works [class*="bg-slate-50"]:not([class*="bg-slate-500"]) {
   background-color: #0c1424 !important;
   border-color: #1a2744 !important;
 }
@@ -955,5 +955,83 @@ html.dark .text-\[\#1e293b\] {
 html.dark svg path[stroke="#2563eb"] {
   stroke: #60a5fa !important;
 }
+
+/* ========================================================================= */
+/* DARK MODE PATCHES — Missing Pastels, Chips, Hovers & Decorations          */
+/* ========================================================================= */
+
+/* Sky family (the one pastel family missing from the overrides above) */
+html.dark .bg-sky-50,
+html.dark .bg-sky-50\/80 {
+  background-color: #131d31 !important;
+  border-color: #1e3354 !important;
+}
+
+/* Teal icon chips */
+html.dark .bg-teal-100 {
+  background-color: #0d2127 !important;
+}
+
+/* Plain blue-100 icon chips (rounded-md; keeps own dark: variants & pills intact) */
+html.dark .bg-blue-100:not([class*="dark:bg-"]):not(.rounded-full) {
+  background-color: #131d31 !important;
+}
+
+/* Icon chips → soft translucent color glows so they separate from card surfaces */
+html.dark .bg-\[\#e1effe\]:not(.section-pill) { background-color: rgba(96, 165, 250, 0.14) !important; }
+html.dark .bg-\[\#daf5e6\] { background-color: rgba(52, 211, 153, 0.14) !important; }
+html.dark .bg-\[\#fce4e8\] { background-color: rgba(251, 113, 133, 0.14) !important; }
+html.dark .bg-\[\#efe3fe\] { background-color: rgba(192, 132, 252, 0.14) !important; }
+html.dark .bg-\[\#fef2d6\] { background-color: rgba(251, 191, 36, 0.14) !important; }
+
+/* Hover backgrounds — restore hover feedback, never flash light */
+html.dark .hover\:bg-slate-50:hover,
+html.dark .hover\:bg-blue-50:hover,
+html.dark .hover\:bg-blue-50\/50:hover { background-color: #1e293b !important; }
+html.dark .hover\:bg-slate-200\/80:hover { background-color: #334155 !important; }
+html.dark .hover\:bg-purple-100:hover { background-color: #241b3d !important; }
+html.dark .dark\:hover\:bg-slate-800:hover { background-color: #1e293b !important; }
+html.dark .hover\:bg-\[\#e2f0fd\]:hover,
+html.dark .hover\:bg-\[\#e4f1fc\]:hover,
+html.dark .hover\:bg-\[\#edf6fe\]:hover { background-color: #1e2d4a !important; }
+html.dark .hover\:bg-\[\#fff7d9\]:hover,
+html.dark .hover\:bg-\[\#fffcee\]:hover { background-color: #2c2213 !important; }
+html.dark .hover\:bg-\[\#fde2e6\]:hover,
+html.dark .hover\:bg-\[\#fef1f3\]:hover { background-color: #30171f !important; }
+html.dark .hover\:bg-\[\#ede3fc\]:hover,
+html.dark .hover\:bg-\[\#f7f2fe\]:hover { background-color: #241b3d !important; }
+
+/* Hover borders — accent returns on hover (base is flattened by [class*=] rules) */
+html.dark .hover\:border-blue-300:hover,
+html.dark .hover\:border-blue-400:hover,
+html.dark .dark\:hover\:border-blue-600:hover { border-color: #3b82f6 !important; }
+html.dark .hover\:border-sky-300:hover { border-color: #38bdf8 !important; }
+html.dark .hover\:border-amber-300:hover { border-color: #f59e0b !important; }
+html.dark .hover\:border-emerald-300:hover { border-color: #34d399 !important; }
+html.dark .hover\:border-purple-300:hover { border-color: #c084fc !important; }
+
+/* Desktop nav: hover:text-blue-600 over-matches the text-blue-600 remap and pins
+   links blue at rest — restore the resting slate color */
+html.dark header .nav-link:not(:hover):not(.nav-active) {
+  color: #94a3b8 !important;
+}
+
+/* Decorative blobs & glows toned down for dark sections */
+html.dark .bg-blue-100\/40 { background-color: rgba(59, 130, 246, 0.10) !important; }
+html.dark .bg-indigo-100\/35 { background-color: rgba(99, 102, 241, 0.10) !important; }
+html.dark [class*="from-cyan-300/15"] { background-image: linear-gradient(to top right, rgba(45, 212, 191, 0.10), rgba(16, 185, 129, 0.06)) !important; }
+html.dark [class*="from-purple-400/12"] { background-image: linear-gradient(to top left, rgba(168, 85, 247, 0.10), rgba(59, 130, 246, 0.07)) !important; }
+html.dark [class*="from-blue-400/18"] { background-image: linear-gradient(to bottom right, rgba(96, 165, 250, 0.10), rgba(129, 140, 248, 0.06)) !important; }
+html.dark [class*="from-teal-400/15"] { background-image: linear-gradient(to top right, rgba(45, 212, 191, 0.10), rgba(96, 165, 250, 0.07)) !important; }
+
+/* ===================== Painting-order fix (both modes) =====================
+   Decorative background layers (grid patterns, orbs) live in
+   "absolute inset-0 ... z-0" wrappers. Positioned elements paint ABOVE
+   non-positioned content, so cards without a position utility got the grid
+   lines painted on top of them (looked transparent / hard to read).
+   Lift rounded cards into the positioned phase so they always paint above
+   the decorative layers. The :not() guards keep .absolute/.fixed/.sticky
+   utilities winning by cascade order, and this rule changes no layout. */
+main section :where(.rounded-xl, .rounded-2xl, .rounded-3xl):not(.absolute):not(.fixed):not(.sticky) { position: relative; }
 
 
