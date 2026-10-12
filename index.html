@@ -80,8 +80,8 @@
           <span class="text-2xl font-bold tracking-tight text-slate-900">Remtoo</span>
         </a>
 
-        <!-- Desktop Navigation Links -->
-        <nav class="hidden md:flex items-center gap-6 lg:gap-7 text-sm font-medium text-slate-600">
+        <!-- Desktop Navigation Links (lg: at md–lg widths the links + CTA overflow the header) -->
+        <nav class="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-600">
           <a href="#curriculum" data-nav-page="curriculum" class="nav-link hover:text-blue-600 transition-colors whitespace-nowrap">Curriculum</a>
           <a href="#whats-included" data-nav-page="whats-included" class="nav-link hover:text-blue-600 transition-colors whitespace-nowrap">What's Included</a>
           <a href="#built-for-schools" data-nav-page="built-for-schools" class="nav-link hover:text-blue-600 transition-colors whitespace-nowrap">For Schools</a>
@@ -93,21 +93,21 @@
         <!-- Primary Action & Theme Toggle -->
         <div class="hidden sm:flex items-center gap-3 shrink-0">
           <!-- Desktop Dark Mode Toggle Button -->
-          <button id="theme-toggle-desktop" type="button" aria-label="Toggle dark mode" title="Toggle theme (Light / Dark)" class="p-2.5 rounded-full text-slate-500 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-400 dark:hover:text-amber-300 dark:hover:bg-slate-800 transition-colors border border-slate-200/80 dark:border-slate-700 cursor-pointer shadow-2xs flex items-center justify-center">
+          <button id="theme-toggle-desktop" type="button" aria-label="Toggle dark mode" title="Toggle theme (Light / Dark)" class="p-2.5 rounded-full text-slate-500 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-400 dark:hover:text-amber-300 dark:hover:bg-slate-800 transition-colors border border-slate-200/80 dark:border-slate-700 cursor-pointer shadow-2xs hidden lg:flex items-center justify-center">
             <!-- Sun icon (visible in dark mode) -->
             <svg class="w-4 h-4 hidden dark:block text-white" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
             <!-- Moon icon (visible in light mode) -->
             <svg class="w-4 h-4 block dark:hidden text-slate-700" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
           </button>
-          <a href="#built-for-schools" data-nav-page="built-for-schools" class="px-5 py-2.5 text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-full shadow-sm hover:shadow transition-all duration-200 whitespace-nowrap">
+          <a href="#book-demo" data-nav-page="book-demo" class="px-5 py-2.5 text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-full shadow-sm hover:shadow transition-all duration-200 whitespace-nowrap">
             Book a Demo
           </a>
         </div>
 
-        <!-- Mobile Controls (Theme Toggle & Menu Button) -->
-        <div class="flex items-center gap-2 md:hidden">
+        <!-- Mobile Controls (Theme Toggle & Menu Button) — visible below lg; desktop theme toggle takes over at lg -->
+        <div class="flex items-center gap-2 lg:hidden">
           <button id="theme-toggle-mobile" type="button" aria-label="Toggle dark mode" title="Toggle theme" class="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors border border-slate-200/80 dark:border-slate-700 flex items-center justify-center">
-            <svg class="w-5 h-5 hidden dark:block text-amber-400" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+            <svg class="w-5 h-5 hidden dark:block text-slate-700" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
             <svg class="w-5 h-5 block dark:hidden text-slate-700" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
           </button>
           <button id="mobile-menu-btn" type="button" aria-label="Toggle Navigation Menu" class="p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-300 dark:hover:text-white dark:hover:bg-slate-800 transition-colors">
@@ -117,7 +117,7 @@
       </div>
 
       <!-- Mobile Dropdown Menu -->
-      <div id="mobile-menu" class="hidden md:hidden border-b border-slate-100 bg-white px-4 pt-2 pb-6 space-y-2">
+      <div id="mobile-menu" class="hidden lg:hidden border-b border-slate-100 bg-white px-4 pt-2 pb-6 space-y-2">
         <a href="#curriculum" data-nav-page="curriculum" class="block px-3 py-2 text-base font-medium text-slate-700 hover:text-blue-600 hover:bg-slate-50 rounded-lg">Curriculum</a>
         <a href="#whats-included" data-nav-page="whats-included" class="block px-3 py-2 text-base font-medium text-slate-700 hover:text-blue-600 hover:bg-slate-50 rounded-lg">What's Included</a>
         <a href="#built-for-schools" data-nav-page="built-for-schools" class="block px-3 py-2 text-base font-medium text-slate-700 hover:text-blue-600 hover:bg-slate-50 rounded-lg">For Schools</a>
@@ -125,7 +125,7 @@
         <a href="#pricing" data-nav-page="pricing" class="block px-3 py-2 text-base font-medium text-slate-700 hover:text-blue-600 hover:bg-slate-50 rounded-lg">Pricing</a>
         <a href="#free-sample" data-nav-page="free-sample" class="block px-3 py-2 text-base font-medium text-slate-700 hover:text-blue-600 hover:bg-slate-50 rounded-lg">Free Sample</a>
         <div class="pt-2">
-          <a href="#built-for-schools" data-nav-page="built-for-schools" class="block w-full text-center px-4 py-2.5 text-sm font-semibold text-white bg-blue-600 rounded-full">Book a Demo</a>
+          <a href="#book-demo" data-nav-page="book-demo" class="block w-full text-center px-4 py-2.5 text-sm font-semibold text-white bg-blue-600 rounded-full">Book a Demo</a>
         </div>
         <!-- Theme Toggle in Mobile Menu -->
         <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between px-3 py-2">
@@ -308,7 +308,7 @@
           </div>
 
           <!-- Hero Bottom Strip: A1 to C1 Progression Journey -->
-          <div class="mt-16 pt-8 border-t border-slate-100">
+          <div class="mt-16 pt-8 ">
             <div class="grid grid-cols-2 sm:grid-cols-5 gap-3 max-w-5xl mx-auto">
               
               <!-- A1 -->
@@ -4309,6 +4309,251 @@
       </section>
       </div>
     
+      <!-- ============================================================ -->
+      <!-- BOOK A DEMO PAGE (centered form, blue accent, floating cards) -->
+      <!-- ============================================================ -->
+      <div id="view-book-demo" class="page-view hidden-view">
+        <section id="section-book-demo" class="py-20 lg:py-24 bg-gradient-to-b from-[#eef6ff]/80 via-[#f8fbfe]/70 to-white dark:from-[#0b0f19] dark:via-[#0e1628] dark:to-[#0b0f19] border-t border-slate-100 dark:border-slate-800 relative overflow-hidden">
+
+          <!-- Background subtle ambiance, grid lines & floating shapes -->
+          <div class="absolute inset-0 pointer-events-none overflow-hidden select-none z-0">
+            <!-- Architectural Grid Lines Pattern -->
+            <div class="absolute inset-0 bg-grid-blueprint [mask-image:radial-gradient(ellipse_at_center,black_35%,transparent_80%)] opacity-70"></div>
+
+            <!-- Color Gradient Orbs -->
+            <div class="absolute -top-32 right-1/4 w-[480px] h-[480px] bg-gradient-to-br from-blue-400/18 to-indigo-400/10 rounded-full blur-3xl animate-ambient-pulse"></div>
+            <div class="absolute top-48 -left-20 w-[380px] h-[380px] bg-gradient-to-tr from-cyan-300/15 to-emerald-300/10 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-10 right-10 w-[320px] h-[320px] bg-gradient-to-tl from-purple-400/12 to-blue-300/10 rounded-full blur-3xl"></div>
+
+            <!-- Floating Decorative Shapes -->
+            <div class="absolute top-16 right-[12%] w-16 h-16 rounded-full border-2 border-dashed border-blue-200/60 dark:border-blue-800/40 animate-ambient-float"></div>
+            <div class="absolute top-44 left-[8%] w-10 h-10 rounded-full border-2 border-indigo-200/50 dark:border-indigo-800/40 animate-ambient-float-reverse"></div>
+
+            <div class="hidden lg:flex absolute top-28 left-[18%] w-11 h-11 rounded-2xl bg-white/80 dark:bg-slate-800/70 border border-blue-200/70 dark:border-blue-800/50 shadow-xs backdrop-blur-xs items-center justify-center rotate-12 animate-ambient-float">
+              <svg class="w-5 h-5 text-blue-600 dark:text-blue-300" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+            </div>
+
+            <div class="absolute top-20 left-[28%] text-blue-400/60 animate-ambient-pulse">
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z"/></svg>
+            </div>
+            <div class="absolute top-64 right-[22%] text-amber-400/70 animate-ambient-float">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z"/></svg>
+            </div>
+
+            <div class="hidden sm:block absolute bottom-24 left-[14%] w-6 h-6 rounded-xs border-2 border-blue-300/50 rotate-45 animate-ambient-float-reverse"></div>
+            <div class="absolute top-12 right-[32%] text-slate-300 dark:text-slate-700 font-mono text-xl font-light">+</div>
+            <div class="absolute top-72 left-[5%] text-blue-300/60 dark:text-blue-700/50 font-mono text-2xl font-light">+</div>
+            <div class="absolute bottom-20 right-[7%] text-slate-300 dark:text-slate-700 font-mono text-xl font-light">+</div>
+
+            <div class="hidden md:grid absolute top-36 right-[5%] grid-cols-3 gap-2 opacity-35">
+              <div class="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
+              <div class="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
+              <div class="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
+              <div class="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
+              <div class="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
+              <div class="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
+              <div class="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
+              <div class="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
+              <div class="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
+            </div>
+          </div>
+
+          <!-- Content -->
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+            <!-- Page Header -->
+            <div class="text-center max-w-3xl mx-auto mb-10 space-y-3.5">
+              <span class="section-pill inline-block px-4 py-1.5 text-xs font-black tracking-widest text-[#2563eb] bg-[#e1effe] rounded-full uppercase shadow-xs">
+                Book a Free Demo
+              </span>
+              <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
+                See Remtoo in Action
+              </h1>
+              <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed">
+                A focused 30-minute walkthrough of the full A1–C1 curriculum, lesson tools, and the school dashboard — tailored to your classroom. No commitment, no setup.
+              </p>
+            </div>
+
+            <!-- Form + Desktop Floating Cards -->
+            <div class="relative max-w-2xl mx-auto">
+
+              <!-- Floating card: sample lesson (desktop only, decorative) -->
+              <div class="hidden xl:block absolute -left-[18rem] top-16 w-60 select-none pointer-events-none z-10 animate-ambient-float">
+                <div class="rounded-2xl border border-slate-200/90 dark:border-slate-700 bg-white dark:bg-slate-900 p-3.5 shadow-lg rotate-[-4deg]">
+                  <span class="text-xs font-semibold text-slate-500 dark:text-slate-400 block mb-0.5">A1 · Lesson 1</span>
+                  <p class="text-base font-extrabold text-slate-900 dark:text-white mb-2 truncate">Meet &amp; Greet</p>
+                  <div class="relative rounded-xl overflow-hidden aspect-16/9 bg-slate-900 shadow-2xs">
+                    <img src="./src/assets/images/sample_a1_meetgreet_clean_1791652964065.jpg" alt="Sample lesson video" class="w-full h-full object-cover" />
+                    <div class="absolute inset-0 flex items-center justify-center">
+                      <span class="w-7 h-7 rounded-full bg-blue-600/95 text-white flex items-center justify-center shadow-md">
+                        <svg class="w-3 h-3 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+                      </span>
+                    </div>
+                    <span class="absolute bottom-1.5 right-1.5 bg-black/85 text-white font-mono text-xs font-bold px-1.5 py-0.5 rounded">8:15</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Floating card: teacher testimonial (desktop only, decorative) -->
+              <div class="hidden xl:block absolute -right-[18rem] top-4 w-56 select-none pointer-events-none z-10 animate-ambient-float-reverse">
+                <div class="rounded-2xl border border-slate-200/90 dark:border-slate-700 bg-white dark:bg-slate-900 p-4 shadow-lg rotate-[5deg]">
+                  <div class="flex items-center gap-2.5 mb-2">
+                    <img src="./src/assets/images/avatar_sarah_k_1791653421697.jpg" alt="Teacher portrait" class="w-9 h-9 rounded-full object-cover ring-2 ring-blue-200 dark:ring-blue-800" />
+                    <div>
+                      <p class="text-sm font-extrabold text-slate-900 dark:text-white leading-tight">Sarah K.</p>
+                      <p class="text-xs text-slate-500 dark:text-slate-400">ESL Teacher</p>
+                    </div>
+                  </div>
+                  <div class="flex gap-0.5 text-amber-400 mb-1.5">
+                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 7.1-1.01L12 2z"/></svg>
+                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 7.1-1.01L12 2z"/></svg>
+                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 7.1-1.01L12 2z"/></svg>
+                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 7.1-1.01L12 2z"/></svg>
+                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 7.1-1.01L12 2z"/></svg>
+                  </div>
+                  <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">“The demo showed me exactly how lessons run. We started the next week.”</p>
+                </div>
+              </div>
+
+              <!-- Floating card: complete curriculum (desktop only, decorative) -->
+              <div class="hidden xl:block absolute -right-[18rem] top-[24rem] w-52 select-none pointer-events-none z-10 animate-ambient-float">
+                <div class="rounded-2xl border border-slate-200/90 dark:border-slate-700 bg-white dark:bg-slate-900 p-3.5 shadow-lg rotate-[-6deg]">
+                  <img src="./src/assets/images/curriculum_books_set_1791646178400.jpg" alt="Curriculum books" class="rounded-xl mb-2.5 w-full h-20 object-cover" />
+                  <p class="text-base font-extrabold text-slate-900 dark:text-white leading-tight mb-0.5">Complete A1–C1</p>
+                  <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">6 levels · 300+ lessons</p>
+                </div>
+              </div>
+
+              <!-- Demo Form Card -->
+              <div class="relative z-20 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-700 shadow-xl p-6 sm:p-9">
+                <form id="demo-form" novalidate class="space-y-5">
+                  <div class="grid sm:grid-cols-2 gap-4">
+
+                    <!-- Full name -->
+                    <div>
+                      <label for="demo-name" class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-1.5">Full name</label>
+                      <div class="relative">
+                        <svg class="w-4 h-4 text-slate-400 dark:text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        <input id="demo-name" name="name" type="text" autocomplete="name" placeholder="e.g. Sarah Bennett" class="w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 px-4 py-3 pl-10 text-base text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500 transition" />
+                      </div>
+                      <p id="err-demo-name" class="hidden mt-1.5 text-xs font-semibold text-red-600 dark:text-red-400"></p>
+                    </div>
+
+                    <!-- Work email -->
+                    <div>
+                      <label for="demo-email" class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-1.5">Work email</label>
+                      <div class="relative">
+                        <svg class="w-4 h-4 text-slate-400 dark:text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                        <input id="demo-email" name="email" type="email" autocomplete="email" placeholder="e.g. sarah@school.edu" class="w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 px-4 py-3 pl-10 text-base text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500 transition" />
+                      </div>
+                      <p id="err-demo-email" class="hidden mt-1.5 text-xs font-semibold text-red-600 dark:text-red-400"></p>
+                    </div>
+
+                    <!-- Phone / WhatsApp -->
+                    <div>
+                      <label for="demo-phone" class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-1.5">Phone / WhatsApp</label>
+                      <div class="relative">
+                        <svg class="w-4 h-4 text-slate-400 dark:text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        <input id="demo-phone" name="phone" type="tel" autocomplete="tel" placeholder="e.g. +1 555 123 4567" class="w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 px-4 py-3 pl-10 text-base text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500 transition" />
+                      </div>
+                      <p id="err-demo-phone" class="hidden mt-1.5 text-xs font-semibold text-red-600 dark:text-red-400"></p>
+                    </div>
+
+                    <!-- School / language center -->
+                    <div>
+                      <label for="demo-school" class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-1.5">School / language center</label>
+                      <div class="relative">
+                        <svg class="w-4 h-4 text-slate-400 dark:text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>
+                        <input id="demo-school" name="school" type="text" autocomplete="organization" placeholder="e.g. Bright Minds Academy (optional)" class="w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 px-4 py-3 pl-10 text-base text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500 transition" />
+                      </div>
+                    </div>
+
+                    <!-- Number of students -->
+                    <div>
+                      <label for="demo-size" class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-1.5">Number of students</label>
+                      <div class="relative">
+                        <svg class="w-4 h-4 text-slate-400 dark:text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        <select id="demo-size" name="size" class="w-full appearance-none rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 px-4 py-3 pl-10 pr-10 text-base text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500 transition cursor-pointer">
+                          <option value="" disabled selected>Choose an option</option>
+                          <option value="1-10">1–10 students</option>
+                          <option value="11-50">11–50 students</option>
+                          <option value="51-200">51–200 students</option>
+                          <option value="200+">200+ students</option>
+                        </select>
+                        <svg class="w-4 h-4 text-slate-400 dark:text-slate-500 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+                      </div>
+                      <p id="err-demo-size" class="hidden mt-1.5 text-xs font-semibold text-red-600 dark:text-red-400"></p>
+                    </div>
+
+                    <!-- Demo focus -->
+                    <div>
+                      <label for="demo-focus" class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-1.5">What should we focus on?</label>
+                      <div class="relative">
+                        <svg class="w-4 h-4 text-slate-400 dark:text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                        <select id="demo-focus" name="focus" class="w-full appearance-none rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 px-4 py-3 pl-10 pr-10 text-base text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500 transition cursor-pointer">
+                          <option value="" disabled selected>Choose an option</option>
+                          <option value="curriculum">Full curriculum walkthrough</option>
+                          <option value="lessons">Lesson tools &amp; slides</option>
+                          <option value="dashboard">School dashboard &amp; admin</option>
+                          <option value="pricing">Pricing &amp; plans</option>
+                        </select>
+                        <svg class="w-4 h-4 text-slate-400 dark:text-slate-500 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+                      </div>
+                      <p id="err-demo-focus" class="hidden mt-1.5 text-xs font-semibold text-red-600 dark:text-red-400"></p>
+                    </div>
+
+                  </div>
+
+                  <!-- Submit + microcopy -->
+                  <div class="pt-1 space-y-3">
+                    <button type="submit" class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-blue-600 hover:bg-blue-700 text-white text-base font-bold shadow-md hover:shadow-lg transition-all inline-flex items-center justify-center gap-2 cursor-pointer">
+                      Book My Free Demo
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="m9 16 2 2 4-4"/></svg>
+                    </button>
+                    <p class="flex items-center justify-center gap-1.5 text-xs text-slate-500 dark:text-slate-400 font-medium text-center">
+                      <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                      Free 30-minute walkthrough · Confirmed by email within one business day
+                    </p>
+                  </div>
+                </form>
+
+                <!-- Success Panel (hidden until submit) -->
+                <div id="demo-success" role="status" class="hidden text-center py-4">
+                  <span class="w-16 h-16 rounded-full bg-emerald-100 dark:bg-emerald-950/70 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mx-auto mb-4 shadow-2xs">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>
+                  </span>
+                  <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight mb-2">Thanks, <span id="success-name">there</span>!</h2>
+                  <p class="text-base text-slate-600 dark:text-slate-300 max-w-md mx-auto leading-relaxed mb-6">
+                    Your demo request is in. We'll email <span id="success-email" class="font-bold text-slate-800 dark:text-slate-100">you</span> within one business day to confirm your 30-minute walkthrough.
+                  </p>
+                  <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+                    <a href="#curriculum" class="px-7 py-3 rounded-full bg-blue-600 hover:bg-blue-700 text-white text-base font-bold shadow-md hover:shadow-lg transition-all">Browse the curriculum</a>
+                    <button type="button" id="demo-reset" class="px-7 py-3 rounded-full border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 text-base font-bold hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-pointer">Book another demo</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Trust Row -->
+            <div class="mt-10 flex flex-wrap items-center justify-center gap-4 sm:gap-7 text-xs sm:text-sm text-slate-700 dark:text-slate-300 font-bold">
+              <div class="flex items-center gap-2">
+                <span class="w-5 h-5 rounded-full bg-emerald-500 text-white flex items-center justify-center text-[11px] font-black shrink-0 shadow-2xs"><svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
+                <span>No credit card</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="w-5 h-5 rounded-full bg-emerald-500 text-white flex items-center justify-center text-[11px] font-black shrink-0 shadow-2xs"><svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
+                <span>For teachers &amp; schools</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="w-5 h-5 rounded-full bg-emerald-500 text-white flex items-center justify-center text-[11px] font-black shrink-0 shadow-2xs"><svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
+                <span>A1–C1 aligned</span>
+              </div>
+            </div>
+
+          </div>
+        </section>
+      </div>
+
     </main>
 
 
@@ -4399,7 +4644,7 @@
               <ul class="text-xs space-y-2.5 text-slate-400 font-medium">
                 <li><a href="#built-for-schools" class="hover:text-white transition-colors">For Schools</a></li>
                 <li><a href="#get-started" class="hover:text-white transition-colors">For Teachers</a></li>
-                <li><a href="#built-for-schools" class="hover:text-white transition-colors">Book a Demo</a></li>
+                <li><a href="#book-demo" class="hover:text-white transition-colors">Book a Demo</a></li>
               </ul>
             </div>
 
@@ -4800,10 +5045,74 @@
 
     <!-- Vite module entry -->
 
+    <!-- Book a Demo Form: client-side validation + success state (static demo, no backend) -->
+    <script>
+      (function () {
+        const form = document.getElementById('demo-form');
+        if (!form) return;
+        const successPanel = document.getElementById('demo-success');
+        const fields = [
+          { id: 'demo-name',  test: v => v.trim().length >= 2, msg: 'Please enter your full name.' },
+          { id: 'demo-email', test: v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()), msg: 'Please enter a valid email address.' },
+          { id: 'demo-phone', test: v => v.replace(/\D/g, '').length >= 7, msg: 'Please enter a reachable phone number.' },
+          { id: 'demo-size',  test: v => v !== '', msg: 'Please choose your group size.' },
+          { id: 'demo-focus', test: v => v !== '', msg: 'Please pick a demo focus.' }
+        ];
+
+        function markField(input, ok, msg) {
+          const err = document.getElementById('err-' + input.id);
+          input.classList.toggle('ring-2', !ok);
+          input.classList.toggle('ring-red-400/70', !ok);
+          if (err) {
+            err.textContent = ok ? '' : msg;
+            err.classList.toggle('hidden', ok);
+          }
+        }
+
+        fields.forEach(f => {
+          const input = document.getElementById(f.id);
+          const revalidate = () => {
+            const err = document.getElementById('err-' + input.id);
+            if (err && !err.classList.contains('hidden')) markField(input, f.test(input.value), f.msg);
+          };
+          input.addEventListener('input', revalidate);
+          input.addEventListener('change', revalidate);
+        });
+
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          let firstBad = null;
+          fields.forEach(f => {
+            const input = document.getElementById(f.id);
+            const ok = f.test(input.value);
+            markField(input, ok, f.msg);
+            if (!ok && !firstBad) firstBad = input;
+          });
+          if (firstBad) { firstBad.focus(); return; }
+
+          document.getElementById('success-name').textContent =
+            document.getElementById('demo-name').value.trim().split(/\s+/)[0] || 'there';
+          document.getElementById('success-email').textContent =
+            document.getElementById('demo-email').value.trim();
+          form.classList.add('hidden');
+          successPanel.classList.remove('hidden');
+          successPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+
+        document.getElementById('demo-reset').addEventListener('click', function () {
+          form.reset();
+          fields.forEach(f => markField(document.getElementById(f.id), true, ''));
+          successPanel.classList.add('hidden');
+          form.classList.remove('hidden');
+          document.getElementById('demo-name').focus();
+        });
+      })();
+    </script>
+
     <!-- Page-Based Client Router -->
     <script>
       (function() {
-        const validPages = ["home", "curriculum", "whats-included", "built-for-schools", "for-teachers", "pricing", "free-sample"];
+        const validPages = ["home", "curriculum", "whats-included", "built-for-schools", "for-teachers", "pricing", "free-sample", "book-demo"];
         const mappedAliases = {
           "hero": "home",
           "why-remtoo": "home",
@@ -4855,9 +5164,12 @@
           }
 
           // Update active links across all navbars
+          // (Solid CTA buttons like "Book a Demo" keep their own styling — the
+          //  .nav-active blue+underline treatment would make their text invisible)
           document.querySelectorAll("[data-nav-page]").forEach(link => {
             const linkPage = link.getAttribute("data-nav-page");
-            if (linkPage === pageId) {
+            const isSolidCta = link.classList.contains("bg-blue-600");
+            if (linkPage === pageId && !isSolidCta) {
               link.classList.add("nav-active");
               if (link.closest("#mobile-menu")) {
                 link.classList.add("bg-blue-50", "text-blue-600", "font-bold");

@@ -1030,6 +1030,16 @@ html.dark [class*="bg-teal-50"]:not([class*="bg-teal-500"]) { background-color: 
 html.dark .text-cyan-700,
 html.dark [class*="text-cyan-700"] { color: #67e8f9 !important; }
 
+/* Book a Demo - form card, selects & floating cards in dark mode */
+html.dark #section-book-demo .bg-white {
+  background-color: #131b2e !important;
+  border-color: #1e293b !important;
+}
+html.dark #section-book-demo select option {
+  background-color: #131b2e;
+  color: #e2e8f0;
+}
+
 /* ===================== Painting-order fix (both modes) =====================
    Decorative background layers (grid patterns, orbs) live in
    "absolute inset-0 ... z-0" wrappers. Positioned elements paint ABOVE
