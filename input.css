@@ -1041,13 +1041,15 @@ html.dark #section-book-demo select option {
 }
 
 /* ===================== Painting-order fix (both modes) =====================
-   Decorative background layers (grid patterns, orbs) live in
-   "absolute inset-0 ... z-0" wrappers. Positioned elements paint ABOVE
-   non-positioned content, so cards without a position utility got the grid
-   lines painted on top of them (looked transparent / hard to read).
-   Lift rounded cards into the positioned phase so they always paint above
-   the decorative layers. The :not() guards keep .absolute/.fixed/.sticky
+   Decorative background layers (grid patterns, orbs, floating chips) live in
+   "absolute inset-0 ... -z-10" wrappers. Every section isolates its stacking
+   context, so those layers paint above the section's own background but BELOW
+   all in-flow content — titles, text, images and cards can never be covered
+   by background decorations. The :not() guards keep .absolute/.fixed/.sticky
    utilities winning by cascade order, and this rule changes no layout. */
+main section {
+  isolation: isolate;
+}
 main section :where(.rounded-xl, .rounded-2xl, .rounded-3xl):not(.absolute):not(.fixed):not(.sticky) { position: relative; }
 
 
